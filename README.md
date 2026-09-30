@@ -6,7 +6,9 @@ Portafolio estático con tres casos de referencia: clasificación con recomendac
 
 ## Explorar
 
-- Selecciona un proyecto o nodo del mapa para abrir sus decisiones y artefactos.
+- Empieza por uno de los tres proyectos de la portada para abrir sus decisiones y artefactos.
+- Recursos reúne las notas, el mapa de conexiones, el visor Archify y el laboratorio.
+- Archivo de aprendizaje mantiene los cursos y ejercicios separados de los proyectos principales.
 - Prueba cambios de rol, departamento, sensibilidad y propósito en el laboratorio.
 - Busca notas con el acceso de la barra superior o la tecla `/`.
 - Descarga notas Markdown desde cada nota. Los archivos de `notas/` usan wikilinks compatibles con Obsidian; copia esa carpeta completa al vault para resolver todos los enlaces.

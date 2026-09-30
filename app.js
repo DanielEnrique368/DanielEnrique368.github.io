@@ -33,15 +33,25 @@
   }
 
   function projectList() {
-    return `<div class="project-list">${data.cases.map(c => `<a class="project-row" href="#caso/${c.id}"><span class="project-symbol ${theme(c.id)}">${icon(c.id === 'clasificacion' ? 'network' : c.id === 'acceso' ? 'lab' : 'folder')}</span><span><h3>${escape(c.shortTitle)}</h3><p>${escape(c.summary)}</p></span><span class="row-meta">Caso de referencia</span>${icon('arrow', 'row-arrow')}</a>`).join('')}</div>`;
+    return `<div class="project-list">${data.cases.map(c => `<a class="project-row" href="#caso/${c.id}"><span class="project-symbol ${theme(c.id)}">${icon(c.id === 'clasificacion' ? 'network' : c.id === 'acceso' ? 'lab' : 'folder')}</span><span><h2>${escape(c.shortTitle)}</h2><p>${escape(c.summary)}</p></span><span class="row-meta">Ver caso</span>${icon('arrow', 'row-arrow')}</a>`).join('')}</div>`;
   }
 
   function home() {
-    return `<div class="intro-line">${heading('Arquitectura que puedes explorar.', 'Soy Daniel Enrique. Este cuaderno conecta mis líneas de trabajo en gobierno de datos, acceso y automatización con sus decisiones de diseño.')}<a class="text-link" href="#proyectos">Explorar proyectos ${icon('arrow')}</a></div>
-      <div class="overview-grid"><section class="graph-panel" aria-labelledby="graph-heading"><div class="panel-heading"><h2 id="graph-heading">El mapa del cuaderno</h2><span>3 proyectos · 6 notas</span></div>${graph()}</section>
-      <section class="spotlight"><span class="pill">Demostración interactiva</span><h2>¿El mismo rol debe ver los mismos datos?</h2><p>Cambia el departamento, la sensibilidad y el propósito. Observa qué permite la política y por qué.</p><div class="mini-decision">${icon('check')}Decisiones explicadas, regla por regla</div><a class="button" href="#laboratorio">Probar una decisión ${icon('arrow')}</a></section></div>
-      <section><div class="section-top"><h2>Proyectos en foco</h2><p>Problema, decisiones y artefactos</p></div>${projectList()}</section>
-      <div class="below-overview"><section><h2>Dentro de la arquitectura</h2><a class="resource-entry" href="arquitectura.html">${icon('network')}<span><strong>Abrir mapa interactivo en Archify</strong><small>Clasificación, revisión, políticas y operación</small></span>${icon('arrow','row-arrow')}</a><p class="notice">Arquitectura de referencia. El contenido está en español; los controles del visor Archify están en inglés.</p></section><section><h2>Notas para profundizar</h2>${data.notes.slice(0,2).map(n => `<a class="resource-entry" href="#nota/${n.id}">${icon('doc')}<span><strong>${escape(n.title)}</strong><small>${escape(n.category)}</small></span>${icon('arrow','row-arrow')}</a>`).join('')}</section></div>`;
+    return `<div class="project-page">${heading('Proyectos de arquitectura de datos.', 'Soy Daniel Enrique. Explora tres casos de referencia sobre clasificación, control de acceso y automatización. Cada caso reúne el problema, las decisiones y sus recursos técnicos.')}<section aria-label="Proyectos destacados">${projectList()}</section><div class="resource-footer"><div><h2>Material de apoyo</h2><p>Notas, diagramas y demostraciones de los proyectos.</p></div><a class="text-link" href="#recursos">Explorar recursos ${icon('arrow')}</a></div></div>`;
+  }
+
+  function resourcesPage() {
+    const resources = [
+      ['#notas','doc','Notas técnicas','Seis decisiones y patrones, con búsqueda y descarga en Markdown.'],
+      ['#mapa','network','Mapa de conexiones','Cómo se relacionan los tres proyectos y sus notas.'],
+      ['arquitectura.html','network','Arquitectura del sistema','Visor Archify: clasificación, revisión, políticas y operación.'],
+      ['#laboratorio','lab','Laboratorio de acceso','Demostración del caso RBAC + ABAC: permitir, enmascarar o denegar.']
+    ];
+    return `${heading('Recursos de los proyectos.', 'Elige el material que necesitas para profundizar en un caso.')}<div class="resource-catalog">${resources.map(([url,symbol,title,description]) => `<a class="resource-entry" href="${url}">${icon(symbol)}<span><strong>${title}</strong><small>${description}</small></span>${icon('arrow','row-arrow')}</a>`).join('')}</div><p class="notice">Los diagramas y ejemplos son de referencia. El visor Archify tiene contenido en español y controles en inglés.</p>`;
+  }
+
+  function mapPage() {
+    return `${back('recursos','Recursos')}${heading('Mapa de conexiones.', 'Selecciona un proyecto o una nota para abrir su contenido. Las líneas muestran vínculos de lectura.')}<section class="graph-panel connection-map" aria-label="Mapa de proyectos y notas">${graph()}</section>`;
   }
 
   function related(ids, caseId) {
@@ -52,13 +62,13 @@
     const c = data.cases.find(item => item.id === id);
     if (!c) return missing();
     return `${back('proyectos','Todos los proyectos')}<header class="case-heading"><span class="pill ${theme(id)}">${escape(c.category)}</span><h1>${escape(c.title)}</h1><p>${escape(c.summary)}</p></header>
-      <div class="case-toolbar"><div class="case-tabs" role="tablist" aria-label="Contenido del caso"><button id="tab-diseno" class="case-tab" role="tab" aria-selected="true" aria-controls="panel-diseno" data-tab="diseno">Diseño del caso</button><button id="tab-artefacto" class="case-tab" role="tab" aria-selected="false" aria-controls="panel-artefacto" tabindex="-1" data-tab="artefacto">Artefacto técnico</button></div><a class="text-link" href="arquitectura.html">Explorar arquitectura ${icon('out')}</a></div>
+      <div class="case-toolbar"><div class="case-tabs" role="tablist" aria-label="Contenido del caso"><button id="tab-diseno" class="case-tab" role="tab" aria-selected="true" aria-controls="panel-diseno" data-tab="diseno">Diseño del caso</button><button id="tab-artefacto" class="case-tab" role="tab" aria-selected="false" aria-controls="panel-artefacto" tabindex="-1" data-tab="artefacto">Artefacto técnico</button></div></div>
       <div class="article-layout"><div class="prose"><section id="panel-diseno" role="tabpanel" aria-labelledby="tab-diseno"><h2>El problema</h2><p>${escape(c.problem)}</p><h2>El enfoque</h2><p>${escape(c.approach)}</p><h2>Decisiones que sostienen el diseño</h2><ul class="decisions">${c.decisions.map(d => `<li><strong>${escape(d.title)}</strong>${escape(d.text)}</li>`).join('')}</ul><div class="reading-note">${escape(c.limits)}</div>${id === 'acceso' ? '<a class="button" href="#laboratorio">Experimentar con la política</a>' : '<a class="button secondary" href="arquitectura.html">Ver el flujo completo</a>'}</section>
       <section id="panel-artefacto" role="tabpanel" aria-labelledby="tab-artefacto" hidden><h2>Una pieza concreta del diseño</h2><p>${escape(c.evidence)}</p><div class="code-block"><div class="code-bar"><span>${escape(c.codeLanguage)}</span><button class="copy-button" data-copy="${id}">Copiar código</button></div><pre><code>${escape(c.code)}</code></pre></div><p class="notice" id="copy-status" role="status"></p><h2>Cómo leer este artefacto</h2><p>${id === 'clasificacion' ? 'El contrato conserva la propuesta separada de la aprobación. La etiqueta no se convierte en una autorización hasta pasar por el responsable del dato.' : id === 'acceso' ? 'La función devuelve una decisión y sus obligaciones. Puedes ejecutar esta misma evaluación desde el laboratorio y contrastar sus condiciones.' : 'Este fragmento muestra dónde se versionan el job y sus parámetros. Hay que aportar valores de entorno y un notebook validado antes de poder desplegarlo.'}</p><div class="supporting"><a class="text-link" href="arquitectura.dataflow.json" download>Descargar especificación del mapa ${icon('doc')}</a>${id === 'acceso' ? '<a class="text-link" href="#laboratorio">Abrir laboratorio</a>' : ''}</div></section></div>${related(c.related, id)}</div>`;
   }
 
   function notesPage() {
-    return heading('Las decisiones también son parte del proyecto.', 'Un cuaderno conectado de patrones, límites y decisiones. Cada nota enlaza los casos en los que se utiliza y se puede descargar en Markdown.') + `<label class="catalog-search">${icon('search')}<input type="search" id="note-search" placeholder="Buscar por tema, patrón o decisión…" aria-label="Buscar notas" autocomplete="off"></label><p id="note-count" class="note-count" role="status"></p><div id="note-results" class="note-grid"></div>`;
+    return back('recursos','Recursos') + heading('Notas técnicas.', 'Patrones y decisiones de los casos, conectados entre sí y disponibles en Markdown.') + `<label class="catalog-search">${icon('search')}<input type="search" id="note-search" placeholder="Buscar por tema, patrón o decisión…" aria-label="Buscar notas" autocomplete="off"></label><p id="note-count" class="note-count" role="status"></p><div id="note-results" class="note-grid"></div>`;
   }
 
   function updateNotes(query = '') {
@@ -77,7 +87,7 @@
   }
 
   function labPage() {
-    return `${heading('Una política. Distintos contextos.', 'Cambia los atributos y observa la decisión. Esta demostración evalúa una regla local sobre un recurso ficticio; no consulta datos ni servicios externos.')}<div class="presets" aria-label="Escenarios de ejemplo"><button class="preset" data-preset="allow">Analista de finanzas</button><button class="preset" data-preset="mask">Auditor con dato restringido</button><button class="preset" data-preset="deny">Visitante sin lectura</button></div>
+    return `${back('caso/acceso','Caso de RBAC + ABAC')}${heading('Laboratorio de acceso.', 'Cambia los atributos y observa la decisión. Esta demostración evalúa una regla local sobre un recurso ficticio; no consulta datos ni servicios externos.')}<div class="presets" aria-label="Escenarios de ejemplo"><button class="preset" data-preset="allow">Analista de finanzas</button><button class="preset" data-preset="mask">Auditor con dato restringido</button><button class="preset" data-preset="deny">Visitante sin lectura</button></div>
       <div class="lab-layout"><form id="policy-form" class="lab-form"><h2>Contexto de la solicitud</h2><p>Recurso: <code>finanzas.movimientos</code></p>
       <label class="field"><span>Rol de la persona</span><select name="role"><option value="analista">Analista</option><option value="auditor">Auditor</option><option value="visitante">Visitante</option></select></label>
       <label class="field"><span>Departamento</span><select name="department"><option value="finanzas">Finanzas</option><option value="operaciones">Operaciones</option></select></label>
@@ -102,16 +112,16 @@
     return heading('El archivo de aprendizaje.', 'Cursos, ejercicios y repositorios anteriores. Un historial de formación que acompaña a los casos de arquitectura.') + `<div class="archive-list">${repos.map(([repo,title,desc]) => `<a href="https://github.com/DanielEnrique368/${repo}" target="_blank" rel="noopener noreferrer"><span>${escape(title)}<small>${escape(desc)}</small></span>${icon('out')}</a>`).join('')}</div>`;
   }
 
-  function missing() { return heading('Esta página no está en el cuaderno.', 'Puedes volver al panorama y elegir un proyecto o una nota.') + '<a class="button" href="#inicio">Volver al panorama</a>'; }
+  function missing() { return heading('Esta página no está en el cuaderno.', 'Vuelve a los proyectos para continuar explorando.') + '<a class="button" href="#proyectos">Ver proyectos</a>'; }
   function closeMenu() { sidebar.classList.remove('open'); menu.setAttribute('aria-expanded','false'); menu.setAttribute('aria-label','Abrir navegación'); }
   function render(initial = false) {
     const [route = 'inicio', id] = location.hash.slice(1).split('/');
-    const active = route === 'caso' ? 'proyectos' : route === 'nota' ? 'notas' : route || 'inicio';
-    const labels = {inicio:'Panorama',proyectos:'Proyectos',notas:'Notas conectadas',laboratorio:'Laboratorio',archivo:'Archivo de aprendizaje'};
-    const handlers = {inicio:home,proyectos:() => heading('Proyectos de arquitectura de datos.', 'Tres casos de referencia para explorar el problema, las decisiones y los artefactos que conectan gobierno, acceso y operación.') + projectList(),caso:() => casePage(id),notas:notesPage,nota:() => notePage(id),laboratorio:labPage,archivo:archivePage};
+    const active = ['','inicio','proyectos','caso'].includes(route) ? 'proyectos' : ['recursos','mapa','notas','nota','laboratorio'].includes(route) ? 'recursos' : 'archivo';
+    const labels = {inicio:'Proyectos',proyectos:'Proyectos',caso:'Proyectos / Caso de estudio',recursos:'Recursos',mapa:'Recursos / Mapa',notas:'Recursos / Notas',nota:'Recursos / Nota',laboratorio:'Recursos / Laboratorio',archivo:'Archivo de aprendizaje'};
+    const handlers = {inicio:home,proyectos:home,recursos:resourcesPage,mapa:mapPage,caso:() => casePage(id),notas:notesPage,nota:() => notePage(id),laboratorio:labPage,archivo:archivePage};
     const routeKey = route || 'inicio';
     app.innerHTML = (Object.hasOwn(handlers,routeKey) ? handlers[routeKey] : missing)();
-    document.getElementById('breadcrumb').textContent = labels[active] || 'Cuaderno';
+    document.getElementById('breadcrumb').textContent = labels[route || 'inicio'] || 'Cuaderno';
     document.querySelectorAll('[data-nav]').forEach(a => { if(a.dataset.nav === active) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
     const title = app.querySelector('h1');
     document.title = `${title ? title.textContent : 'Cuaderno'} | Daniel Enrique`;
@@ -148,7 +158,7 @@
   });
   menu.addEventListener('click',() => {const open=sidebar.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Cerrar navegación':'Abrir navegación');});
   const searchShortcut = document.querySelector('.search-shortcut');
-  searchShortcut.setAttribute('aria-label','Buscar en el cuaderno');
+  searchShortcut.setAttribute('aria-label','Buscar notas');
   searchShortcut.addEventListener('click',() => setTimeout(()=>document.getElementById('note-search')?.focus(),0));
   document.addEventListener('click',event => {if(sidebar.classList.contains('open') && !sidebar.contains(event.target) && !menu.contains(event.target)) closeMenu();});
   document.addEventListener('keydown',event => {
