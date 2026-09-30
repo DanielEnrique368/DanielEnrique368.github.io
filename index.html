@@ -1,71 +1,58 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Portafolio de Daniel Enrique: arquitectura de datos, gobierno de acceso y automatización.">
-    <title>Daniel Enrique · Sistemas de datos confiables</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23071820'/%3E%3Cpath d='M16 16h32v32H16z' fill='none' stroke='%2397f3cc' stroke-width='4'/%3E%3Cpath d='M24 32h16M32 24v16' stroke='%2397f3cc' stroke-width='4'/%3E%3C/svg%3E">
-    <style>
-      :root { --ink:#071820; --ink-2:#0c2430; --panel:#10313d; --paper:#e9f0ec; --muted:#a8c2c5; --line:rgba(233,240,236,.18); --lime:#97f3cc; --gold:#f2cf79; --focus:#ffffff; }
-      * { box-sizing:border-box; }
-      html { scroll-behavior:smooth; }
-      body { margin:0; color:var(--paper); background:radial-gradient(ellipse 90% 62% at 95% -15%,#184655 0%,var(--ink) 58%); font:400 16px/1.55 "DM Sans",sans-serif; }
-      ::selection { color:var(--ink); background:var(--lime); }
-      ::-webkit-scrollbar { width:11px; } ::-webkit-scrollbar-track { background:var(--ink); } ::-webkit-scrollbar-thumb { background:var(--panel); border:3px solid var(--ink); border-radius:10px; }
-      a { color:inherit; } a:focus-visible, summary:focus-visible { outline:2px solid var(--focus); outline-offset:5px; }
-      .wrap { width:min(1200px,calc(100% - 48px)); margin:auto; }
-      header { position:sticky; z-index:5; top:0; border-bottom:1px solid var(--line); background:rgba(7,24,32,.86); backdrop-filter:blur(15px); }
-      nav { height:74px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
-      .brand { display:flex; align-items:center; gap:11px; font:600 1rem/1 "Space Grotesk",sans-serif; text-decoration:none; }
-      .brand-mark { display:grid; width:28px; height:28px; place-items:center; border:1px solid var(--lime); color:var(--lime); font-size:.72rem; letter-spacing:-.07em; }
-      .nav-links { display:flex; gap:24px; color:var(--muted); font-size:.88rem; } .nav-links a { text-underline-offset:5px; text-decoration-color:transparent; } .nav-links a:hover { color:var(--lime); text-decoration-color:currentColor; }
-      .hero { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(380px,.95fr); gap:72px; align-items:center; min-height:650px; padding:74px 0 90px; }
-      h1,h2,h3 { font-family:"Space Grotesk",sans-serif; } h1 { max-width:720px; margin:0; font-size:clamp(3.2rem,7vw,6.5rem); font-weight:600; letter-spacing:-.055em; line-height:.91; text-wrap:balance; }
-      .intro { max-width:590px; margin:30px 0 0; color:var(--muted); font-size:1.13rem; }
-      .identity { display:flex; align-items:center; gap:10px; margin-top:34px; color:var(--lime); font-weight:600; font-size:.93rem; }
-      .identity::before { content:""; width:8px; height:8px; background:var(--lime); box-shadow:0 0 0 5px rgba(151,243,204,.1); }
-      .system-map { margin:0; padding:30px; border:1px solid var(--line); background:linear-gradient(145deg,rgba(20,60,72,.86),rgba(7,24,32,.25)); }
-      .system-map figcaption { display:flex; align-items:center; justify-content:space-between; gap:15px; margin-bottom:26px; color:var(--muted); font-size:.84rem; }
-      .system-map figcaption strong { color:var(--paper); font:600 .95rem "Space Grotesk",sans-serif; }
-      .map-art { display:block; width:100%; height:auto; }
-      .map-legend { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:22px; border-top:1px solid var(--line); padding-top:17px; }
-      .map-legend span { color:var(--muted); font-size:.75rem; } .map-legend b { display:block; margin-bottom:3px; color:var(--paper); font-size:.9rem; }
-      .statement { display:grid; grid-template-columns:200px 1fr; gap:28px; padding:30px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
-      .statement h2 { margin:0; color:var(--lime); font-size:.95rem; } .statement p { max-width:800px; margin:0; font-size:clamp(1.35rem,2.6vw,2rem); font-weight:500; line-height:1.2; letter-spacing:-.03em; }
-      .work { padding:68px 0 80px; } .work-head { display:flex; align-items:end; justify-content:space-between; gap:40px; margin-bottom:20px; } .work-head h2 { max-width:670px; margin:0; font-size:clamp(2rem,4.2vw,4rem); line-height:1; letter-spacing:-.05em; } .work-head p { max-width:300px; margin:0; color:var(--muted); font-size:.92rem; }
-      .case { display:grid; grid-template-columns:80px minmax(0,1fr) 250px; gap:30px; padding:37px 0; border-top:1px solid var(--line); } .case:last-child { border-bottom:1px solid var(--line); }
-      .case-key { padding-top:6px; color:var(--lime); font:600 .85rem "Space Grotesk",sans-serif; } .case-key::before { content:""; display:block; width:28px; height:2px; margin-bottom:12px; background:currentColor; }
-      .case h3 { max-width:675px; margin:0; font-size:clamp(1.55rem,3vw,2.8rem); font-weight:500; line-height:1.08; letter-spacing:-.045em; } .case p { max-width:690px; margin:16px 0 0; color:var(--muted); }
-      details { margin-top:22px; } summary { display:inline-flex; align-items:center; gap:8px; cursor:pointer; color:var(--lime); font-weight:600; list-style:none; } summary::-webkit-details-marker { display:none; } summary::before { content:"+"; display:grid; width:21px; height:21px; place-items:center; border:1px solid currentColor; font-size:1rem; line-height:1; } details[open] summary::before { content:"–"; }
-      .scope { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; max-width:710px; margin-top:20px; padding:18px 0 2px; } .scope div { padding-top:11px; border-top:1px solid var(--line); color:var(--muted); font-size:.84rem; } .scope b { display:block; margin-bottom:4px; color:var(--paper); font-size:.91rem; }
-      .case-meta { align-self:start; padding:2px 0 0; } .case-meta span { display:block; padding:9px 0; border-bottom:1px solid var(--line); color:var(--muted); font-size:.85rem; } .case-meta span:first-child { border-top:1px solid var(--line); color:var(--gold); font-weight:600; }
-      .archive { display:grid; grid-template-columns:200px 1fr; gap:28px; padding:31px 0 84px; } .archive h2 { margin:0; font-size:.95rem; color:var(--muted); } .archive p { max-width:680px; margin:0; color:var(--muted); } .archive-links { display:flex; flex-wrap:wrap; gap:9px; margin-top:19px; } .archive-links a { color:var(--muted); border-bottom:1px solid var(--line); padding:5px 0; margin-right:15px; font-size:.88rem; text-decoration:none; } .archive-links a:hover { color:var(--lime); border-color:var(--lime); }
-      footer { border-top:1px solid var(--line); } .footer-inner { display:flex; justify-content:space-between; gap:20px; padding:28px 0 42px; color:var(--muted); font-size:.85rem; } .footer-inner a { color:var(--paper); text-underline-offset:4px; }
-      @media (max-width:880px) { .hero { grid-template-columns:1fr; gap:42px; min-height:0; padding:72px 0; } .system-map { max-width:650px; } .case { grid-template-columns:60px 1fr; } .case-meta { grid-column:2; max-width:500px; } }
-      @media (max-width:620px) { .wrap { width:min(100% - 30px,1200px); } nav { height:64px; } .nav-links { gap:13px; font-size:.78rem; } .hero { padding:55px 0 64px; } h1 { font-size:clamp(2.9rem,15vw,4.6rem); } .system-map { padding:20px; } .map-legend { grid-template-columns:1fr; gap:8px; } .statement,.archive { grid-template-columns:1fr; gap:16px; } .work { padding-top:55px; } .work-head { display:block; } .work-head p { margin-top:16px; } .case { grid-template-columns:1fr; gap:14px; padding:29px 0; } .case-key { display:flex; align-items:center; gap:10px; padding:0; } .case-key::before { margin:0; } .case-meta { grid-column:auto; } .scope { grid-template-columns:1fr; } .footer-inner { display:block; } .footer-inner a { display:inline-block; margin-top:8px; } }
-      @media (prefers-reduced-motion:no-preference) { .system-map { animation:arrive .75s cubic-bezier(.16,1,.3,1) both; } @keyframes arrive { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } } }
-    </style>
-  </head>
-  <body>
-    <header><div class="wrap"><nav><a class="brand" href="#inicio"><span class="brand-mark">DE</span>Daniel Enrique</a><div class="nav-links"><a href="#casos">Casos</a><a href="#archivo">Archivo</a><a href="https://github.com/DanielEnrique368" target="_blank" rel="noreferrer">GitHub</a></div></nav></div></header>
-    <main id="inicio">
-      <section class="wrap hero">
-        <div><h1>Los datos ganan valor cuando también ganan contexto.</h1><p class="intro">Portafolio de arquitectura de datos para clasificar información, decidir accesos y operar plataformas de forma confiable.</p><div class="identity">Gobernanza, automatización y diseño de controles</div></div>
-        <figure class="system-map" aria-labelledby="map-title"><figcaption><strong id="map-title">Plano de control</strong><span>del dato a la operación</span></figcaption><svg class="map-art" viewBox="0 0 510 300" role="img" aria-label="Diagrama de conexión entre clasificación de datos, políticas de acceso y automatización"><path d="M88 150H215M295 150H422" fill="none" stroke="#97f3cc" stroke-width="2" stroke-dasharray="6 8"/><path d="M255 75V225" fill="none" stroke="#f2cf79" stroke-width="2"/><rect x="26" y="107" width="124" height="86" rx="10" fill="#0b2530" stroke="#97f3cc"/><rect x="193" y="107" width="124" height="86" rx="10" fill="#123746" stroke="#f2cf79"/><rect x="360" y="107" width="124" height="86" rx="10" fill="#0b2530" stroke="#97f3cc"/><circle cx="88" cy="150" r="10" fill="#97f3cc"/><circle cx="255" cy="150" r="10" fill="#f2cf79"/><circle cx="422" cy="150" r="10" fill="#97f3cc"/><text x="88" y="132" fill="#e9f0ec" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="14" font-weight="700">Clasificar</text><text x="88" y="170" fill="#a8c2c5" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12">tipo + contexto</text><text x="255" y="132" fill="#e9f0ec" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="14" font-weight="700">Decidir</text><text x="255" y="170" fill="#a8c2c5" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12">rol + atributo</text><text x="422" y="132" fill="#e9f0ec" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="14" font-weight="700">Operar</text><text x="422" y="170" fill="#a8c2c5" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12">flujo + evidencia</text><text x="255" y="56" fill="#f2cf79" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12">POLÍTICA</text><text x="255" y="252" fill="#a8c2c5" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12">TRAZABILIDAD</text></svg><div class="map-legend"><span><b>Clasificar</b>Entender qué dato se tiene.</span><span><b>Autorizar</b>Aplicar reglas por contexto.</span><span><b>Automatizar</b>Convertir decisiones en operación.</span></div></figure>
-      </section>
-      <section class="wrap statement"><h2>Idea central</h2><p>No basta con guardar datos: hay que saber qué son, quién puede usarlos y cómo convertir las reglas en una operación repetible.</p></section>
-      <section class="wrap work" id="casos" aria-labelledby="casos-title"><div class="work-head"><h2 id="casos-title">Tres frentes de un mismo sistema de confianza.</h2><p>Abre cada caso para revisar el problema que ordena y el alcance que propone.</p></div>
-        <article class="case"><div class="case-key">GenAI</div><div><h3>Clasificación de tipos de datos con recomendación GenAI</h3><p>Un enfoque para reconocer información por su tipo y contexto, y proponer recomendaciones de tratamiento y gobierno con apoyo de inteligencia generativa.</p><details><summary>Ver alcance del caso</summary><div class="scope"><div><b>Entrada</b>Señales disponibles sobre contenido y contexto.</div><div><b>Decisión</b>Clasificación y recomendación explicable.</div><div><b>Uso</b>Priorización de acciones de gobierno.</div></div></details></div><aside class="case-meta"><span>Caso de arquitectura</span><span>Clasificación de datos</span><span>Recomendaciones GenAI</span><span>Trazabilidad</span></aside></article>
-        <article class="case"><div class="case-key">Acceso</div><div><h3>Gobierno de acceso con RBAC + ABAC</h3><p>Modelo de acceso que combina el rol de una persona con atributos como área, sensibilidad del dato, propósito y contexto para definir permisos de manera más precisa.</p><details><summary>Ver alcance del caso</summary><div class="scope"><div><b>Roles</b>Responsabilidades que delimitan acciones base.</div><div><b>Atributos</b>Condiciones que refinan cada decisión.</div><div><b>Gobierno</b>Políticas que se pueden revisar y auditar.</div></div></details></div><aside class="case-meta"><span>Caso de gobierno</span><span>RBAC + ABAC</span><span>Menor privilegio</span><span>Políticas auditables</span></aside></article>
-        <article class="case"><div class="case-key">Datos</div><div><h3>Implementación y evolución de automatización en Databricks</h3><p>Diseño de una ruta de automatización para pasar de procesos manuales a operaciones repetibles, mantenibles y observables dentro de Databricks.</p><details><summary>Ver alcance del caso</summary><div class="scope"><div><b>Implementar</b>Convertir procesos manuales en flujos definidos.</div><div><b>Controlar</b>Hacer visible la ejecución y sus cambios.</div><div><b>Evolucionar</b>Mejorar sin romper la operación existente.</div></div></details></div><aside class="case-meta"><span>Caso de plataforma</span><span>Flujos automatizados</span><span>Despliegue controlado</span><span>Evolución operativa</span></aside></article>
-      </section>
-      <section class="wrap archive" id="archivo" aria-labelledby="archivo-title"><h2 id="archivo-title">Archivo de aprendizaje</h2><div><p>Ejercicios, cursos y repositorios previos. Están disponibles como historial de formación, separados del trabajo de arquitectura presentado arriba.</p><div class="archive-links"><a href="https://github.com/DanielEnrique368/ProgrammingAssignment2" target="_blank" rel="noreferrer">R Programming</a><a href="https://github.com/DanielEnrique368/ExData_Plotting1" target="_blank" rel="noreferrer">Exploratory Data Analysis</a><a href="https://github.com/DanielEnrique368/RepData_PeerAssessment1" target="_blank" rel="noreferrer">Reproducible Research</a><a href="https://github.com/DanielEnrique368/JHU-reproducible-research-course-project-2" target="_blank" rel="noreferrer">Research Project</a><a href="https://github.com/DanielEnrique368/-Coursera-Getting-and-Cleaning-Data-Course-Project-" target="_blank" rel="noreferrer">Getting &amp; Cleaning Data</a><a href="https://github.com/DanielEnrique368/Exploratory-Data-Analysis-Week-4-Project-2" target="_blank" rel="noreferrer">EDA Week 4</a></div></div></section>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Daniel Enrique: portafolio de arquitectura de datos. Explora clasificación con GenAI, políticas RBAC + ABAC y automatización en Databricks con notas y demostraciones interactivas.">
+  <meta name="theme-color" content="#252636">
+  <title>Daniel Enrique — Cuaderno de arquitectura</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%235a49b6'/%3E%3Cpath d='M11 10h7c13 0 13 20 0 20h-7z' fill='none' stroke='white' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=cuaderno1">
+  <script defer src="cases.js?v=cuaderno1"></script>
+  <script defer src="policy.js?v=cuaderno1"></script>
+  <script defer src="app.js?v=cuaderno1"></script>
+</head>
+<body>
+  <a class="skip" href="#contenido">Ir al contenido</a>
+  <svg class="icon-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10H3zM9 20v-7h6v7"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6h7l2 3h9v11H3zM3 6V4h7l2 2h8v3"/></symbol>
+    <symbol id="i-network" viewBox="0 0 24 24"><circle cx="5" cy="12" r="3"/><circle cx="18" cy="5" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8 10 7-4M8 14l7 4M18 8v8"/></symbol>
+    <symbol id="i-lab" viewBox="0 0 24 24"><path d="M9 3h6M10 3v7L4 20h16l-6-10V3M7 15h10"/></symbol>
+    <symbol id="i-archive" viewBox="0 0 24 24"><path d="M4 8v12h16V8M3 4h18v4H3zM9 12h6"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></symbol>
+    <symbol id="i-out" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4 10 14M10 4H4v16h16v-6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M5 3h9l5 5v13H5zM14 3v6h5M9 13h6M9 17h6"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+  </defs></svg>
+  <aside class="sidebar" id="sidebar" aria-label="Navegación principal">
+    <a class="identity" href="#inicio"><span class="monogram">de<span>.</span></span><span><strong>Daniel Enrique</strong><small>Arquitectura de datos</small></span></a>
+    <div class="workspace-label">Cuaderno de arquitectura</div>
+    <nav class="primary-nav">
+      <a href="#inicio" data-nav="inicio"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>Panorama</a>
+      <a href="#proyectos" data-nav="proyectos"><svg class="icon" aria-hidden="true"><use href="#i-folder"/></svg>Proyectos<span class="nav-count">3</span></a>
+      <a href="#notas" data-nav="notas"><svg class="icon" aria-hidden="true"><use href="#i-network"/></svg>Notas conectadas<span class="nav-count">6</span></a>
+      <a href="#laboratorio" data-nav="laboratorio"><svg class="icon" aria-hidden="true"><use href="#i-lab"/></svg>Laboratorio</a>
+      <a href="#archivo" data-nav="archivo"><svg class="icon" aria-hidden="true"><use href="#i-archive"/></svg>Archivo de aprendizaje</a>
+    </nav>
+    <div class="sidebar-projects"><h2>En este cuaderno</h2>
+      <a href="#caso/clasificacion"><span class="project-dot purple"></span>Clasificación + GenAI</a>
+      <a href="#caso/acceso"><span class="project-dot teal"></span>Control de acceso</a>
+      <a href="#caso/databricks"><span class="project-dot orange"></span>Automatización Databricks</a>
+    </div>
+    <div class="sidebar-bottom"><span class="small-mark">Ideas conectadas.<br>Decisiones documentadas.</span><a href="https://github.com/DanielEnrique368" target="_blank" rel="noopener noreferrer">Mi GitHub personal<svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><button class="menu-button" id="menu-toggle" aria-label="Abrir navegación" aria-expanded="false" aria-controls="sidebar"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button><div class="breadcrumb"><span>Portafolio</span><span aria-hidden="true">/</span><strong id="breadcrumb">Panorama</strong></div><a class="search-shortcut" href="#notas"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><span>Buscar en el cuaderno</span><kbd>/</kbd></a><a class="source-link" href="https://github.com/DanielEnrique368/DanielEnrique368.github.io" target="_blank" rel="noopener noreferrer">Código<svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a></header>
+    <main id="contenido" tabindex="-1">
+      <div id="app"><section class="page-heading"><h1>Un cuaderno para explorar arquitectura de datos.</h1><p>Clasificación con GenAI, gobierno RBAC + ABAC y automatización en Databricks.</p><noscript><p>Activa JavaScript para explorar las notas y las demostraciones. También puedes <a href="arquitectura.html">abrir el diagrama de arquitectura</a> o <a href="https://github.com/DanielEnrique368/DanielEnrique368.github.io">leer el código en GitHub</a>.</p></noscript></section></div>
     </main>
-    <footer><div class="wrap footer-inner"><span>Daniel Enrique · Arquitectura de datos y controles confiables</span><a href="https://github.com/DanielEnrique368" target="_blank" rel="noreferrer">github.com/DanielEnrique368</a></div></footer>
-  </body>
+    <footer class="footer"><span>Daniel Enrique · Cuaderno público de arquitectura</span><span>Ejemplos sintéticos · Sin servicios de pago conectados</span></footer>
+  </div>
+</body>
 </html>
-

@@ -1,0 +1,18 @@
+{
+  "diagram_type": "dataflow",
+  "output": "arquitectura.html",
+  "specification": "arquitectura.dataflow.json",
+  "specification_sha256": "5e99333f73d5eb3c13d2309634091755e6718cd9b49267c175dc531449af1ea0",
+  "specification_bytes": 2950,
+  "artifact_sha256": "0999206fe7389f8389aa791cfdec01c1e9420d46447f156209704f8d1b4af51a",
+  "artifact_bytes": 806722,
+  "validation": "9/9 showcase, 0 errors, 0 warnings",
+  "browser_evidence": "passed",
+  "browser_evidence_receipt": "arquitectura.visual-check.json",
+  "visual_review": "passed",
+  "visual_review_scope": "Image-capable review of four generated light/dark screenshots at 1440x900 and 2048x1320. Nodes, relationship labels, theme contrast, cards, page containment and vertical balance inspected. Interactive focus/search/export behavior was not manually exercised.",
+  "correction_rounds": 1,
+  "authored_language": "es",
+  "viewer_language": "en",
+  "notes": "Reference architecture, not proof of deployment. Existing sistema-confianza artifacts preserved. Fixed Archify controls and html lang remain English."
+}

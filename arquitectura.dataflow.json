@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "Arquitectura de referencia",
+    "quality_profile": "showcase",
+    "viewBox": [870, 500],
+    "legend": {
+      "entries": {
+        "default": { "label": "flujo de evidencia" },
+        "emphasis": { "label": "metadatos" },
+        "security": { "label": "política" },
+        "database": { "label": "almacenamiento" }
+      }
+    }
+  },
+  "stages": [
+    { "label": "Descubrir" },
+    { "label": "Clasificar" },
+    { "label": "Autorizar" },
+    { "label": "Operar" }
+  ],
+  "nodes": [
+    { "id": "fuente-perfil", "type": "external", "label": "Fuentes de datos", "sublabel": "perfil y contexto", "stage": 0, "row": 0, "width": 148 },
+    { "id": "genai-propuesta", "type": "backend", "label": "GenAI", "sublabel": "recomienda etiquetas", "tag": "propone", "stage": 1, "row": 0, "width": 148 },
+    { "id": "persona-revision", "type": "frontend", "label": "Revisión humana", "sublabel": "aceptar o corregir", "tag": "aprueba", "stage": 1, "row": 2, "width": 148 },
+    { "id": "catalogo-aprobado", "type": "database", "label": "Catálogo", "sublabel": "etiquetas aprobadas", "stage": 2, "row": 2, "width": 148 },
+    { "id": "politica-servidor", "type": "security", "label": "RBAC + ABAC", "sublabel": "rol y atributos", "tag": "fail closed", "stage": 2, "row": 0, "width": 148 },
+    { "id": "job-servidor", "type": "cloud", "label": "Jobs Databricks", "sublabel": "control en servidor", "tag": "ejecuta", "stage": 3, "row": 0, "width": 148 },
+    { "id": "registro-evidencia", "type": "database", "label": "Registro auditable", "sublabel": "política y ejecución", "stage": 3, "row": 2, "width": 148 }
+  ],
+  "flows": [
+    { "id": "contexto-clasificacion", "from": "fuente-perfil", "to": "genai-propuesta", "label": "metadatos", "variant": "emphasis" },
+    { "id": "propuesta-revision", "from": "genai-propuesta", "to": "persona-revision", "label": "propuesta", "variant": "emphasis", "labelAt": [315, 200] },
+    { "id": "aprobacion-catalogo", "from": "persona-revision", "to": "catalogo-aprobado", "label": "aprobación", "variant": "emphasis" },
+    { "id": "etiquetas-politica", "from": "catalogo-aprobado", "to": "politica-servidor", "label": "atributos", "variant": "security" },
+    { "id": "permiso-ejecucion", "from": "politica-servidor", "to": "job-servidor", "label": "autorización", "variant": "security" },
+    { "id": "ejecucion-evidencia", "from": "job-servidor", "to": "registro-evidencia", "label": "eventos", "variant": "default", "labelAt": [745, 200] }
+  ],
+  "cards": [
+    { "dot": "emerald", "title": "Modelo de referencia", "items": ["GenAI recomienda; una persona aprueba las etiquetas. Este mapa no afirma un despliegue productivo."] },
+    { "dot": "amber", "title": "Contrato de seguridad", "items": ["El servidor valida identidad y políticas. Ante error o falta de permiso, deniega. El navegador solo muestra la demo."] }
+  ]
+}
