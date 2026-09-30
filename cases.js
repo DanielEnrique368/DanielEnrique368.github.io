@@ -48,9 +48,10 @@
       {
         id: "clasificacion",
         title: "Del nombre de una columna a una clasificación defendible",
-        shortTitle: "Clasificación asistida por GenAI",
+        shortTitle: "Clasificación y uso responsable de IA",
         category: "Clasificación de datos",
-        summary: "Una recomendación necesita contexto, una justificación y una persona responsable de aprobarla.",
+        summary: "GenAI como apoyo a una clasificación trazable, con contexto y aprobación del responsable del dato.",
+        governance: "En este diseño, el dueño del dato define significado y sensibilidad; el steward coordina la revisión; seguridad verifica la coherencia de los atributos antes de usarlos en políticas. El criterio de avance es una clasificación aprobada, versionada y con responsable.",
         problem: "Un campo llamado identificador no explica si contiene una clave técnica, un documento personal o una referencia pública. Clasificar solo por nombre propaga etiquetas equivocadas hacia los controles de acceso.",
         approach: "El diseño combina metadatos del esquema, reglas conocidas y contexto del dominio. GenAI propone tipo semántico y sensibilidad; una revisión humana resuelve ambigüedades antes de publicar atributos en el catálogo. El diagrama conecta esa clasificación con la siguiente decisión: quién puede consumir el dato.",
         decisions: [
@@ -67,9 +68,10 @@
       {
         id: "acceso",
         title: "Acceso según rol y contexto del dato",
-        shortTitle: "RBAC + ABAC explicable",
+        shortTitle: "Privacidad y gobierno del acceso",
         category: "Gobierno de acceso",
-        summary: "Rol, departamento, sensibilidad y propósito producen una decisión que se puede inspeccionar.",
+        summary: "Traducir políticas de uso en controles RBAC + ABAC que permitan explicar quién accede y por qué.",
+        governance: "El dueño del dato define usos permitidos; seguridad revisa la política; el equipo técnico implementa y verifica el control. El diseño propone aprobar accesos con alcance, responsable y evidencia de aplicación, no solo con una solicitud aceptada.",
         problem: "Un rol genérico de analista suele ser demasiado amplio para distinguir recursos de distintos dominios. Multiplicar roles para cada combinación de contexto vuelve difícil entender por qué alguien puede leer un dato.",
         approach: "La demostración asigna al rol una capacidad básica de lectura y evalúa atributos sobre un recurso fijo: finanzas.movimientos. Devuelve permitir, enmascarar o denegar con sus comprobaciones. La regla es local, determinista y se puede probar cambiando los cuatro atributos.",
         decisions: [
@@ -86,9 +88,10 @@
       {
         id: "databricks",
         title: "Hacer que una automatización también se pueda cambiar",
-        shortTitle: "Evolución de automatización en Databricks",
+        shortTitle: "Automatización con controles operativos",
         category: "Automatización",
-        summary: "Versionar la configuración, separar entornos y conservar evidencia de ejecución hace revisable cada cambio.",
+        summary: "Hacer sostenibles las automatizaciones en Databricks mediante versiones, validación y evidencia de ejecución.",
+        governance: "Negocio acuerda el resultado esperado; el equipo técnico aporta pruebas; la función autorizadora decide la promoción y operación asume seguimiento y recuperación. La propuesta separa construir, aceptar y autorizar, con criterios verificables para cada cambio.",
         problem: "Un notebook que funciona manualmente deja preguntas abiertas: qué versión se ejecuta, con qué parámetros, cómo se promueve a otro entorno y qué permite reconstruir un fallo.",
         approach: "La referencia usa una definición declarativa del job y plantea una entrega por etapas: validar configuración, probar en desarrollo, revisar el cambio y promover la misma versión. El mapa conecta la operación con evidencia auditable; las notas detallan decisiones de despliegue y observabilidad.",
         decisions: [
@@ -105,9 +108,10 @@
       {
         id: "purview",
         title: "Calidad en Purview: de reglas aisladas a lotes revisables",
-        shortTitle: "Calidad por lotes en Purview",
+        shortTitle: "Calidad de datos a escala",
         category: "Calidad de datos",
-        summary: "Diseño de reglas asistidas por IA, revisión humana y publicación por API con control por lote.",
+        summary: "Propuesta para Purview: reglas asistidas por IA y API, con criterios de negocio y revisión por lote.",
+        governance: "El dueño del dato acuerda la calidad requerida para su uso; el steward mantiene criterios y excepciones; la revisión técnica contrasta las reglas. Solo un lote aceptado y autorizado avanzaría a publicación. La IA propone, pero no define el riesgo aceptable ni aprueba por sí sola.",
         problem: "Crear reglas una por una dificulta mantener criterios consistentes y reconstruir qué se aprobó. La automatización también puede multiplicar errores si confunde una sugerencia de calidad con una regla lista para publicar.",
         approach: "El diseño propone que una IA reciba metadatos mínimos y sugiera reglas conservando origen y motivo, sin aprobarlas. Negocio revisaría el significado y una validación técnica comprobaría cada propuesta antes de preparar el lote. Una integración futura usaría la API de Data Quality: Create Rules opera en el contexto de dominio, producto de datos y activo, y la versión referenciada está en Preview. Atlas entity/bulk pertenece al Data Map de metadatos y linaje; no sustituye la API de reglas de calidad.",
         decisions: [

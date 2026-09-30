@@ -1,8 +1,12 @@
-# Daniel Enrique · Cuaderno de arquitectura
+# Daniel Carhuas · Gobierno de datos e IA
 
 [Abrir portafolio](https://danielenrique368.github.io) · [Laboratorio de políticas](https://danielenrique368.github.io/#laboratorio) · [Arquitectura interactiva](https://danielenrique368.github.io/arquitectura.html)
 
-Portafolio estático con cuatro casos de referencia: clasificación con recomendación GenAI, calidad en Purview, acceso RBAC + ABAC y automatización en Databricks. Incluye nueve notas conectadas, marcos de gobernanza aplicados, dos contratos JSON descargables y un evaluador de políticas ejecutable en el navegador.
+Portafolio profesional de un especialista en gobierno y gestión de datos, con proyección a Governance Lead / CDO. El posicionamiento prioriza estrategia, responsabilidades, adopción y control; no presenta al autor como arquitecto de datos ni como CDO en ejercicio.
+
+La síntesis de trayectoria está basada en el CV facilitado por el autor. No se publica ese documento ni sus datos de contacto. Los casos públicos siguen siendo referencias didácticas, separados de la experiencia profesional.
+
+Sitio estático con cuatro casos de referencia: clasificación con recomendación GenAI, calidad en Purview, acceso RBAC + ABAC y automatización en Databricks. Incluye nueve notas conectadas, marcos de gobernanza aplicados, dos contratos JSON descargables y un evaluador de políticas ejecutable en el navegador.
 
 ## Explorar
 
