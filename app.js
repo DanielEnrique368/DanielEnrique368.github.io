@@ -17,9 +17,19 @@
     return;
   }
 
+  function downloadLinks(items = []) {
+    return items.map(item => `<a class="text-link" href="${escape(item.url)}" download>${escape(item.label)} ${icon('doc')}</a>`).join('');
+  }
+
+  function sourceLinks(items = []) {
+    return items.length ? `<section class="source-citation"><h2>Referencias para profundizar</h2><ul>${items.map(item => `<li><a href="${escape(item.url)}" target="_blank" rel="noopener noreferrer">${escape(item.label)}</a></li>`).join('')}</ul></section>` : '';
+  }
+
+  document.querySelector('.nav-count').textContent = data.cases.length;
+
   function graph() {
-    return `<svg class="graph" viewBox="0 0 600 335" aria-label="Mapa navegable de proyectos y notas relacionadas">
-      <g aria-hidden="true"><path d="M170 137 337 135 420 237M170 137 420 237M170 137 88 64M170 137 305 53M337 135 305 53M337 135 492 85M337 135 228 269M420 237 228 269M420 237 532 284M420 237 474 169M170 137 228 269"/></g>
+    return `<svg class="graph" viewBox="0 0 600 435" aria-label="Mapa navegable de proyectos y notas relacionadas">
+      <g aria-hidden="true"><path d="M170 137 337 135 420 237M170 137 420 237M170 137 88 64M170 137 305 53M337 135 305 53M337 135 492 85M337 135 228 269M420 237 228 269M420 237 532 284M420 237 474 169M170 137 228 269M90 237 170 137M90 237 90 365M90 365 300 390M337 135 300 390M420 237 490 390M90 237 300 390"/></g>
       <a href="#nota/revision-humana" aria-label="Nota: revisión humana"><circle class="node-circle note-node" cx="88" cy="64" r="7"/><text x="88" y="43" text-anchor="middle" class="detail-label">Revisión humana</text></a>
       <a href="#nota/metadatos" aria-label="Nota: metadatos"><circle class="node-circle note-node" cx="305" cy="53" r="8"/><text x="305" y="31" text-anchor="middle" class="detail-label">Metadatos</text></a>
       <a href="#nota/minimo-privilegio" aria-label="Nota: mínimo privilegio"><circle class="node-circle note-node" cx="492" cy="85" r="7"/><text x="492" y="62" text-anchor="middle" class="detail-label">Mínimo privilegio</text></a>
@@ -29,7 +39,11 @@
       <a href="#caso/clasificacion" aria-label="Proyecto: clasificación GenAI"><circle class="node-circle main-node" cx="170" cy="137" r="17"/><text class="project-label" x="165" y="179" text-anchor="middle">Clasificación GenAI</text></a>
       <a href="#caso/acceso" aria-label="Proyecto: RBAC y ABAC"><circle class="node-circle access-node" cx="337" cy="135" r="17"/><text class="project-label" x="337" y="111" text-anchor="middle">RBAC + ABAC</text></a>
       <a href="#caso/databricks" aria-label="Proyecto: automatización Databricks"><circle class="node-circle ops-node" cx="420" cy="237" r="17"/><text class="project-label" x="420" y="273" text-anchor="middle">Databricks</text></a>
-    </svg><div class="mobile-map">${data.cases.map(c => `<div><a class="mobile-project" href="#caso/${c.id}"><span class="project-dot ${theme(c.id) || 'purple'}"></span>${escape(c.shortTitle)}</a><div class="mobile-connections">${c.related.slice(0,2).map(id => `<a href="#nota/${id}">${escape(({ 'revision-humana':'Revisión humana',metadatos:'Metadatos','minimo-privilegio':'Mínimo privilegio','decision-explicable':'Decisión explicable',despliegue:'Despliegue',observabilidad:'Observabilidad' })[id])}</a>`).join('')}</div></div>`).join('')}</div><div class="graph-caption"><span><i></i>Proyectos</span><span><i style="background:#b4aec9"></i>Notas</span><span>Selecciona un nodo para explorar</span></div>`;
+      <a href="#caso/purview" aria-label="Proyecto: calidad en Purview"><circle class="node-circle main-node" cx="90" cy="237" r="17"/><text class="project-label" x="90" y="275" text-anchor="middle">Purview · calidad</text></a>
+      <a href="#nota/calidad-por-contrato" aria-label="Nota: reglas de calidad por contrato"><circle class="node-circle note-node" cx="90" cy="365" r="7"/><text x="90" y="394" text-anchor="middle">Reglas de calidad</text></a>
+      <a href="#nota/gobierno-datos-ia" aria-label="Nota: gobierno de datos e IA"><circle class="node-circle note-node" cx="300" cy="390" r="8"/><text x="300" y="419" text-anchor="middle">Gobierno de datos e IA</text></a>
+      <a href="#nota/interoperabilidad" aria-label="Nota: interoperabilidad"><circle class="node-circle note-node" cx="490" cy="390" r="7"/><text x="490" y="419" text-anchor="middle">Interoperabilidad</text></a>
+    </svg><div class="mobile-map">${data.cases.map(c => `<div><a class="mobile-project" href="#caso/${c.id}"><span class="project-dot ${theme(c.id) || 'purple'}"></span>${escape(c.shortTitle)}</a><div class="mobile-connections">${c.related.map(id => `<a href="#nota/${id}">${escape(lookupNote(id)?.title || id)}</a>`).join('')}</div></div>`).join('')}</div><div class="graph-caption"><span><i></i>Proyectos</span><span><i style="background:#b4aec9"></i>Notas</span><span>Selecciona un nodo para explorar</span></div>`;
   }
 
   function projectList() {
@@ -37,13 +51,13 @@
   }
 
   function home() {
-    return `<div class="project-page">${heading('Proyectos de arquitectura de datos.', 'Soy Daniel Enrique. Explora tres casos de referencia sobre clasificación, control de acceso y automatización. Cada caso reúne el problema, las decisiones y sus recursos técnicos.')}<section aria-label="Proyectos destacados">${projectList()}</section><div class="resource-footer"><div><h2>Material de apoyo</h2><p>Notas, diagramas y demostraciones de los proyectos.</p></div><a class="text-link" href="#recursos">Explorar recursos ${icon('arrow')}</a></div></div>`;
+    return `<div class="project-page">${heading('Proyectos de arquitectura de datos.', 'Soy Daniel Enrique. Diseño soluciones de clasificación, calidad, acceso y automatización. Explora casos de referencia con decisiones, ejemplos y límites claros.')}<section aria-label="Proyectos destacados">${projectList()}</section><div class="resource-footer"><div><h2>Material de apoyo</h2><p>Marcos de gobernanza, notas y demostraciones de los proyectos.</p></div><a class="text-link" href="#recursos">Explorar recursos ${icon('arrow')}</a></div></div>`;
   }
 
   function resourcesPage() {
     const resources = [
-      ['#notas','doc','Notas técnicas','Seis decisiones y patrones, con búsqueda y descarga en Markdown.'],
-      ['#mapa','network','Mapa de conexiones','Cómo se relacionan los tres proyectos y sus notas.'],
+      ['#notas','doc','Notas y marcos de gobernanza','Calidad, gobierno de datos e IA y decisiones de plataforma. Con búsqueda y descargas.'],
+      ['#mapa','network','Mapa de conexiones','Cómo se relacionan los casos y sus notas.'],
       ['arquitectura.html','network','Arquitectura del sistema','Visor Archify: clasificación, revisión, políticas y operación.'],
       ['#laboratorio','lab','Laboratorio de acceso','Demostración del caso RBAC + ABAC: permitir, enmascarar o denegar.']
     ];
@@ -55,7 +69,8 @@
   }
 
   function related(ids, caseId) {
-    return `<aside class="related-panel"><h2>Notas conectadas</h2>${ids.map(id => { const note = lookupNote(id); return note ? `<a class="note-link" href="#nota/${id}">${escape(note.title)}</a>` : ''; }).join('')}<h2>Artefactos del caso</h2><a class="note-link" href="arquitectura.html">Diagrama Archify</a>${caseId === 'acceso' ? '<a class="note-link" href="#laboratorio">Simulador de políticas</a><a class="note-link" href="https://github.com/DanielEnrique368/DanielEnrique368.github.io/blob/main/policy.js" target="_blank" rel="noopener noreferrer">Código del evaluador</a>' : ''}<h2>Alcance publicado</h2><p>Diseño de referencia y ejemplos sintéticos. La evidencia de un despliegue productivo no forma parte de este cuaderno.</p></aside>`;
+    const c = data.cases.find(item => item.id === caseId);
+    return `<aside class="related-panel"><h2>Notas conectadas</h2>${ids.map(id => { const note = lookupNote(id); return note ? `<a class="note-link" href="#nota/${id}">${escape(note.title)}</a>` : ''; }).join('')}<h2>Artefactos del caso</h2>${c.noArchitecture ? '' : '<a class="note-link" href="arquitectura.html">Diagrama Archify</a>'}${(c.downloads || []).map(item => `<a class="note-link" href="${escape(item.url)}" download>${escape(item.label)}</a>`).join('')}${caseId === 'acceso' ? '<a class="note-link" href="#laboratorio">Simulador de políticas</a><a class="note-link" href="https://github.com/DanielEnrique368/DanielEnrique368.github.io/blob/main/policy.js" target="_blank" rel="noopener noreferrer">Código del evaluador</a>' : ''}<h2>Alcance publicado</h2><p>Diseño de referencia y ejemplos sintéticos. La evidencia de un despliegue productivo no forma parte de este cuaderno.</p></aside>`;
   }
 
   function casePage(id) {
@@ -63,8 +78,8 @@
     if (!c) return missing();
     return `${back('proyectos','Todos los proyectos')}<header class="case-heading"><span class="pill ${theme(id)}">${escape(c.category)}</span><h1>${escape(c.title)}</h1><p>${escape(c.summary)}</p></header>
       <div class="case-toolbar"><div class="case-tabs" role="tablist" aria-label="Contenido del caso"><button id="tab-diseno" class="case-tab" role="tab" aria-selected="true" aria-controls="panel-diseno" data-tab="diseno">Diseño del caso</button><button id="tab-artefacto" class="case-tab" role="tab" aria-selected="false" aria-controls="panel-artefacto" tabindex="-1" data-tab="artefacto">Artefacto técnico</button></div></div>
-      <div class="article-layout"><div class="prose"><section id="panel-diseno" role="tabpanel" aria-labelledby="tab-diseno"><h2>El problema</h2><p>${escape(c.problem)}</p><h2>El enfoque</h2><p>${escape(c.approach)}</p><h2>Decisiones que sostienen el diseño</h2><ul class="decisions">${c.decisions.map(d => `<li><strong>${escape(d.title)}</strong>${escape(d.text)}</li>`).join('')}</ul><div class="reading-note">${escape(c.limits)}</div>${id === 'acceso' ? '<a class="button" href="#laboratorio">Experimentar con la política</a>' : '<a class="button secondary" href="arquitectura.html">Ver el flujo completo</a>'}</section>
-      <section id="panel-artefacto" role="tabpanel" aria-labelledby="tab-artefacto" hidden><h2>Una pieza concreta del diseño</h2><p>${escape(c.evidence)}</p><div class="code-block"><div class="code-bar"><span>${escape(c.codeLanguage)}</span><button class="copy-button" data-copy="${id}">Copiar código</button></div><pre><code>${escape(c.code)}</code></pre></div><p class="notice" id="copy-status" role="status"></p><h2>Cómo leer este artefacto</h2><p>${id === 'clasificacion' ? 'El contrato conserva la propuesta separada de la aprobación. La etiqueta no se convierte en una autorización hasta pasar por el responsable del dato.' : id === 'acceso' ? 'La función devuelve una decisión y sus obligaciones. Puedes ejecutar esta misma evaluación desde el laboratorio y contrastar sus condiciones.' : 'Este fragmento muestra dónde se versionan el job y sus parámetros. Hay que aportar valores de entorno y un notebook validado antes de poder desplegarlo.'}</p><div class="supporting"><a class="text-link" href="arquitectura.dataflow.json" download>Descargar especificación del mapa ${icon('doc')}</a>${id === 'acceso' ? '<a class="text-link" href="#laboratorio">Abrir laboratorio</a>' : ''}</div></section></div>${related(c.related, id)}</div>`;
+      <div class="article-layout"><div class="prose"><section id="panel-diseno" role="tabpanel" aria-labelledby="tab-diseno"><h2>El problema</h2><p>${escape(c.problem)}</p><h2>El enfoque</h2><p>${escape(c.approach)}</p><h2>Decisiones que sostienen el diseño</h2><ul class="decisions">${c.decisions.map(d => `<li><strong>${escape(d.title)}</strong>${escape(d.text)}</li>`).join('')}</ul><div class="reading-note">${escape(c.limits)}</div>${c.noArchitecture ? '<a class="button secondary" href="#nota/calidad-por-contrato">Leer criterios de calidad</a>' : id === 'acceso' ? '<a class="button" href="#laboratorio">Experimentar con la política</a>' : '<a class="button secondary" href="arquitectura.html">Ver el flujo completo</a>'}</section>
+      <section id="panel-artefacto" role="tabpanel" aria-labelledby="tab-artefacto" hidden><h2>Una pieza concreta del diseño</h2><p>${escape(c.evidence)}</p><div class="code-block"><div class="code-bar"><span>${escape(c.codeLanguage)}</span><button class="copy-button" data-copy="${id}">Copiar código</button></div><pre><code>${escape(c.code)}</code></pre></div><p class="notice" id="copy-status" role="status"></p><h2>Cómo leer este artefacto</h2><p>${c.artifactReading ? escape(c.artifactReading) : id === 'clasificacion' ? 'El contrato conserva la propuesta separada de la aprobación. La etiqueta no se convierte en una autorización hasta pasar por el responsable del dato.' : id === 'acceso' ? 'La función devuelve una decisión y sus obligaciones. Puedes ejecutar esta misma evaluación desde el laboratorio y contrastar sus condiciones.' : 'Este fragmento muestra dónde se versionan el job y sus parámetros. Hay que aportar valores de entorno y un notebook validado antes de poder desplegarlo.'}</p><div class="supporting">${downloadLinks(c.downloads)}${c.noArchitecture ? '' : `<a class="text-link" href="arquitectura.dataflow.json" download>Descargar especificación del mapa ${icon('doc')}</a>`}${id === 'acceso' ? '<a class="text-link" href="#laboratorio">Abrir laboratorio</a>' : ''}</div>${sourceLinks(c.sources)}</section></div>${related(c.related, id)}</div>`;
   }
 
   function notesPage() {
@@ -83,7 +98,7 @@
     const n = lookupNote(id);
     if (!n) return missing();
     const linkedCases = data.cases.filter(c => c.related.includes(id));
-    return `${back('notas','Todas las notas')}<header class="case-heading"><span class="pill">${escape(n.category)}</span><h1>${escape(n.title)}</h1><p>${escape(n.summary)}</p></header><div class="article-layout"><article class="prose">${n.paragraphs.map(p => `<p>${escape(p)}</p>`).join('')}<h2>Decisión de diseño</h2><p>${escape(n.decision)}</p><h2>El compromiso que implica</h2><p>${escape(n.tradeoff)}</p><p class="source-citation">Referencia: <a href="${escape(n.source.url)}" target="_blank" rel="noopener noreferrer">${escape(n.source.label)}</a>. Las decisiones descritas son propuestas de este cuaderno.</p><div class="supporting"><a class="button secondary" href="notas/${n.id}.md" download>Descargar nota .md ${icon('doc')}</a></div><p class="notice">Markdown con enlaces entre notas, listo para incorporarlo a un cuaderno de Obsidian.</p></article><aside class="related-panel"><h2>Conectada con</h2>${n.related.map(id => `<a class="note-link" href="#nota/${id}">${escape(lookupNote(id).title)}</a>`).join('')}<h2>Aparece en estos proyectos</h2>${linkedCases.map(c => `<a class="note-link" href="#caso/${c.id}">${escape(c.shortTitle)}</a>`).join('')}<h2>Mapa de referencia</h2><a class="note-link" href="arquitectura.html">Explorar arquitectura</a></aside></div>`;
+    return `${back('notas','Todas las notas')}<header class="case-heading"><span class="pill">${escape(n.category)}</span><h1>${escape(n.title)}</h1><p>${escape(n.summary)}</p></header><div class="article-layout"><article class="prose">${n.paragraphs.map(p => `<p>${escape(p)}</p>`).join('')}<h2>Decisión de diseño</h2><p>${escape(n.decision)}</p><h2>El compromiso que implica</h2><p>${escape(n.tradeoff)}</p>${sourceLinks([n.source,...(n.sources || [])].filter((item,index,all) => item && all.findIndex(other => other?.url === item.url) === index))}${n.attribution ? `<p class="notice">${escape(n.attribution)}</p>` : ''}<p class="notice">Las decisiones descritas son propuestas de este cuaderno.</p><div class="supporting"><a class="button secondary" href="notas/${n.id}.md" download>Descargar nota .md ${icon('doc')}</a>${downloadLinks(n.downloads)}</div><p class="notice">Markdown con enlaces entre notas, listo para incorporarlo a un cuaderno de Obsidian.</p></article><aside class="related-panel"><h2>Conectada con</h2>${n.related.map(id => `<a class="note-link" href="#nota/${id}">${escape(lookupNote(id).title)}</a>`).join('')}<h2>Aparece en estos proyectos</h2>${linkedCases.map(c => `<a class="note-link" href="#caso/${c.id}">${escape(c.shortTitle)}</a>`).join('')}<h2>Mapa de conexiones</h2><a class="note-link" href="#mapa">Explorar conexiones</a></aside></div>`;
   }
 
   function labPage() {

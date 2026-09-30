@@ -2,11 +2,11 @@
 
 [Abrir portafolio](https://danielenrique368.github.io) · [Laboratorio de políticas](https://danielenrique368.github.io/#laboratorio) · [Arquitectura interactiva](https://danielenrique368.github.io/arquitectura.html)
 
-Portafolio estático con tres casos de referencia: clasificación con recomendación GenAI, acceso RBAC + ABAC y automatización en Databricks. Incluye seis notas conectadas y un evaluador de políticas ejecutable en el navegador.
+Portafolio estático con cuatro casos de referencia: clasificación con recomendación GenAI, calidad en Purview, acceso RBAC + ABAC y automatización en Databricks. Incluye nueve notas conectadas, marcos de gobernanza aplicados, dos contratos JSON descargables y un evaluador de políticas ejecutable en el navegador.
 
 ## Explorar
 
-- Empieza por uno de los tres proyectos de la portada para abrir sus decisiones y artefactos.
+- Empieza por uno de los proyectos de la portada para abrir sus decisiones y artefactos.
 - Recursos reúne las notas, el mapa de conexiones, el visor Archify y el laboratorio.
 - Archivo de aprendizaje mantiene los cursos y ejercicios separados de los proyectos principales.
 - Prueba cambios de rol, departamento, sensibilidad y propósito en el laboratorio.
@@ -16,7 +16,7 @@ Portafolio estático con tres casos de referencia: clasificación con recomendac
 
 ## Alcance
 
-Los ejemplos son sintéticos. GenAI se presenta como diseño y contrato de datos; no se invoca ningún modelo. El laboratorio ejecuta una regla determinista local. No autentica personas ni protege datos de un servidor. El fragmento de Databricks es una referencia y no despliega recursos.
+Los ejemplos son sintéticos. GenAI se presenta como diseño y contrato de datos; no se invoca ningún modelo. El laboratorio ejecuta una regla determinista local. No autentica personas ni protege datos de un servidor. El fragmento de Databricks es una referencia y no despliega recursos. El lote Purview es un contrato didáctico propio, no un payload oficial ni un generador IA conectado. La API de reglas DQ documentada es preview; no se confunde con Atlas entity/bulk para metadatos y linaje. DAMA-DMBOK y NIST AI RMF se presentan como referencias de diseño, no certificaciones ni cumplimiento acreditado. No se publican el PDF aportado ni las fuentes internas de Obsidian.
 
 ## Archivos
 
@@ -25,6 +25,7 @@ Los ejemplos son sintéticos. GenAI se presenta como diseño y contrato de datos
 | `index.html`, `styles.css`, `app.js` | Interfaz, navegación por hash y búsqueda |
 | `cases.js` | Casos y notas; fuente del contenido visible |
 | `policy.js` | Política de demostración, exportada para navegador y Node |
+| `recursos/*.json` | Contratos sintéticos de calidad y gobierno de IA, sin llamadas API |
 | `notas/*.md` | Notas descargables para Obsidian |
 | `arquitectura.dataflow.json` | Fuente editable Archify |
 | `arquitectura.html` | Visor autónomo generado por Archify |

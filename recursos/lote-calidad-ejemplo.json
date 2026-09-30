@@ -1,0 +1,50 @@
+{
+  "tipo": "contrato_ilustrativo_no_payload_api",
+  "version": "1.0",
+  "datos": "sinteticos",
+  "publicar": false,
+  "proveedor_ia_conectado": false,
+  "activo": "demo.pedidos",
+  "reglas": [
+    {
+      "nombre": "Importe no negativo",
+      "columna": "importe",
+      "tipo_dato": "decimal",
+      "dimension_propuesta": "validez",
+      "expresion_sql_propuesta": "importe >= 0",
+      "estado": "pendiente_revision"
+    },
+    {
+      "nombre": "Estado reconocido",
+      "columna": "estado",
+      "tipo_dato": "string",
+      "dimension_propuesta": "validez",
+      "vocabulario_propuesto": [
+        "pendiente",
+        "completado",
+        "cancelado"
+      ],
+      "estado": "pendiente_revision"
+    }
+  ],
+  "revision": {
+    "aprobacion_negocio": "pendiente",
+    "validacion_tecnica": "pendiente",
+    "autorizacion_publicacion": "pendiente"
+  },
+  "sandbox": {
+    "sql": "sin_ejecutar",
+    "vocabulario": "sin_validar",
+    "duplicados": "sin_validar"
+  },
+  "control_por_regla": {
+    "registro": [
+      "huella_contenido",
+      "estado_remoto",
+      "intentos",
+      "motivo"
+    ],
+    "reintento": "Solo ante fallo transitorio confirmado; reconciliar antes un estado remoto incierto.",
+    "ejecutor": "Servicio backend; sin credenciales en el frontend."
+  }
+}
