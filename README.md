@@ -10,9 +10,11 @@ Sitio estático con cuatro casos de referencia: clasificación con recomendació
 
 ## Explorar
 
-- Empieza por uno de los proyectos de la portada para abrir sus decisiones y artefactos.
+- La portada permite probar tres contextos de una decisión de acceso: analítica, auditoría y otro uso. Utiliza el mismo evaluador que el laboratorio.
+- Casos de negocio lleva a cuatro ejemplos con intención, responsabilidades, medición propuesta y evidencia pública. Los beneficios esperados no se presentan como resultados conseguidos.
+- Mi enfoque separa la trayectoria profesional y la proyección Governance Lead / CDO de los ejemplos ilustrativos.
 - Recursos reúne las notas, el mapa de conexiones, el visor Archify y el laboratorio.
-- Archivo de aprendizaje mantiene los cursos y ejercicios separados de los proyectos principales.
+- Archivo de aprendizaje, en el pie de página, mantiene los cursos y ejercicios separados de los casos principales.
 - Prueba cambios de rol, departamento, sensibilidad y propósito en el laboratorio.
 - Busca notas con el acceso de la barra superior o la tecla `/`.
 - Descarga notas Markdown desde cada nota. Los archivos de `notas/` usan wikilinks compatibles con Obsidian; copia esa carpeta completa al vault para resolver todos los enlaces.
@@ -26,7 +28,7 @@ Los ejemplos son sintéticos. GenAI se presenta como diseño y contrato de datos
 
 | Archivo | Propósito |
 |---|---|
-| `index.html`, `styles.css`, `app.js` | Interfaz, navegación por hash y búsqueda |
+| `index.html`, `styles.css`, `executive.css`, `app.js` | Interfaz, sistema visual ejecutivo, navegación por hash y búsqueda |
 | `cases.js` | Casos y notas; fuente del contenido visible |
 | `policy.js` | Política de demostración, exportada para navegador y Node |
 | `recursos/*.json` | Contratos sintéticos de calidad y gobierno de IA, sin llamadas API |
@@ -44,5 +46,6 @@ La web no conecta bases de datos, APIs de pago ni cómputo de Databricks. La fue
 ## Comprobaciones
 
 - Recorridos de escritorio y móvil: casos, pestañas, búsqueda, descargas y menú.
+- Portada: decisiones accesibles por teclado, cinco anchos adicionales de 320 a 1920 px y movimiento reducido.
 - Evaluador: permitir, enmascarar, denegar y entradas inválidas.
 - Archify: 9/9 controles showcase; comprobación de pantalla sin desbordamiento en cuatro resoluciones. Consulta el recibo para el alcance exacto de revisión.

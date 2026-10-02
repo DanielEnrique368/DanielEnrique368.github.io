@@ -4,16 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Daniel Carhuas: especialista en gobierno y gestión de datos. Estrategia, calidad, privacidad y gobierno de IA, con experiencia en banca, minería y educación.">
-  <meta name="theme-color" content="#252636">
+  <meta name="theme-color" content="#edf2ec">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_PE">
+  <meta property="og:title" content="Daniel Carhuas — Gobierno de datos que habilita negocio">
+  <meta property="og:description" content="Decisiones, responsabilidades y evidencia. Explora casos de gobierno de datos e IA y una demostración interactiva de acceso responsable.">
+  <meta property="og:url" content="https://danielenrique368.github.io/">
   <title>Daniel Carhuas — Gobierno de datos e IA</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%235a49b6'/%3E%3Cpath d='M11 10h7c13 0 13 20 0 20h-7z' fill='none' stroke='white' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%2324604e'/%3E%3Cpath d='M11 10h7c13 0 13 20 0 20h-7z' fill='none' stroke='white' stroke-width='3'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=gobierno4">
-  <script defer src="cases.js?v=gobierno4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=negocio5">
+  <link rel="stylesheet" href="executive.css?v=negocio5">
+  <script defer src="cases.js?v=negocio5"></script>
   <script defer src="policy.js?v=cuaderno1"></script>
-  <script defer src="app.js?v=gobierno4"></script>
+  <script defer src="app.js?v=negocio5"></script>
 </head>
 <body>
   <a class="skip" href="#contenido">Ir al contenido</a>
@@ -30,22 +36,21 @@
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
   </defs></svg>
-  <aside class="sidebar" id="sidebar" aria-label="Navegación principal">
+  <header class="site-header">
     <a class="identity" href="#inicio"><span class="monogram">dc<span>.</span></span><span><strong>Daniel Carhuas</strong><small>Gobierno de datos e IA</small></span></a>
-    <div class="workspace-label">Portafolio personal</div>
-    <nav class="primary-nav">
-      <a href="#proyectos" data-nav="proyectos"><svg class="icon" aria-hidden="true"><use href="#i-folder"/></svg>Proyectos<span class="nav-count">4</span></a>
-      <a href="#recursos" data-nav="recursos"><svg class="icon" aria-hidden="true"><use href="#i-doc"/></svg>Recursos</a>
-      <a href="#archivo" data-nav="archivo"><svg class="icon" aria-hidden="true"><use href="#i-archive"/></svg>Archivo de aprendizaje</a>
+    <button class="menu-button" id="menu-toggle" aria-label="Abrir navegación" aria-expanded="false" aria-controls="sidebar"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
+    <nav class="site-nav primary-nav" id="sidebar" aria-label="Navegación principal">
+      <a href="#proyectos" data-nav="proyectos">Casos de negocio</a>
+      <a href="#perfil" data-nav="perfil">Mi enfoque</a>
+      <a href="#recursos" data-nav="recursos">Recursos</a>
+      <a class="search-shortcut nav-utility" href="#notas"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><span>Buscar</span><kbd>/</kbd></a>
     </nav>
-    <div class="sidebar-bottom"><a href="https://github.com/DanielEnrique368" target="_blank" rel="noopener noreferrer">Mi GitHub personal<svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a></div>
-  </aside>
+  </header>
   <div class="workspace">
-    <header class="topbar"><button class="menu-button" id="menu-toggle" aria-label="Abrir navegación" aria-expanded="false" aria-controls="sidebar"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button><div class="breadcrumb"><span>Portafolio</span><span aria-hidden="true">/</span><strong id="breadcrumb">Proyectos</strong></div><a class="search-shortcut" href="#notas"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><span>Buscar notas</span><kbd>/</kbd></a><a class="source-link" href="https://github.com/DanielEnrique368/DanielEnrique368.github.io" target="_blank" rel="noopener noreferrer">Código<svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a></header>
     <main id="contenido" tabindex="-1">
-      <div id="app"><section class="page-heading"><h1>Gobierno de datos, de la estrategia a la operación.</h1><p>Estrategia, calidad, privacidad y uso responsable de IA.</p><noscript><p>Activa JavaScript para explorar las notas y las demostraciones. También puedes <a href="arquitectura.html">abrir el diagrama de arquitectura</a> o <a href="https://github.com/DanielEnrique368/DanielEnrique368.github.io">leer el código en GitHub</a>.</p></noscript></section></div>
+      <div id="app"><section class="page-heading"><h1>Gobernar datos. Habilitar negocio.</h1><p>Soy Daniel Carhuas. Conecto prioridades de negocio, responsabilidades y controles para una analítica y una IA confiables.</p><noscript><p>Activa JavaScript para explorar los casos y las demostraciones. También puedes <a href="arquitectura.html">abrir el diagrama de referencia</a> o <a href="https://github.com/DanielEnrique368/DanielEnrique368.github.io">leer el código en GitHub</a>.</p></noscript></section></div>
     </main>
-    <footer class="footer"><span>Daniel Carhuas · Gobierno de datos e IA</span><span>Casos de referencia · Sin servicios de pago conectados</span></footer>
+    <footer class="footer"><span>Daniel Carhuas<br>Gobierno de datos e IA</span><nav aria-label="Enlaces secundarios"><a href="#archivo">Archivo de aprendizaje</a><a href="https://github.com/DanielEnrique368" target="_blank" rel="noopener noreferrer">GitHub personal</a><a href="https://github.com/DanielEnrique368/DanielEnrique368.github.io" target="_blank" rel="noopener noreferrer">Código del sitio</a></nav><span>Ejemplos públicos y sintéticos.<br>Sin servicios de IA conectados.</span></footer>
   </div>
 </body>
 </html>

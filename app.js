@@ -13,7 +13,7 @@
   const back = (to, label) => `<a class="backlink" href="#${to}">${icon('arrow')}${label}</a>`;
 
   if (!data || !window.PolicyDemo) {
-    app.innerHTML = heading('El cuaderno no pudo cargarse.', 'Recarga la página para volver a intentarlo.') + '<a class="button" href="arquitectura.html">Abrir arquitectura</a>';
+    app.innerHTML = heading('El portafolio no pudo cargarse.', 'Recarga la página para volver a intentarlo.') + '<a class="button" href="arquitectura.html">Abrir diagrama de referencia</a>';
     return;
   }
 
@@ -25,7 +25,35 @@
     return items.length ? `<section class="source-citation"><h2>Referencias para profundizar</h2><ul>${items.map(item => `<li><a href="${escape(item.url)}" target="_blank" rel="noopener noreferrer">${escape(item.label)}</a></li>`).join('')}</ul></section>` : '';
   }
 
-  document.querySelector('.nav-count').textContent = data.cases.length;
+  const heroScenarios = {
+    analytics: {role:'analista', department:'finanzas', sensitivity:'interno', purpose:'analitica'},
+    audit: {role:'auditor', department:'operaciones', sensitivity:'restringido', purpose:'auditoria'},
+    other: {role:'auditor', department:'operaciones', sensitivity:'restringido', purpose:'marketing'}
+  };
+
+  function heroDecision(scenario = 'audit') {
+    const result = window.PolicyDemo.evaluate(heroScenarios[scenario]);
+    const wording = {
+      allow: ['Uso habilitado', 'El analista de Finanzas puede consultar datos internos para analítica.', 'Registrar la decisión'],
+      mask: ['Uso con condiciones', 'La auditoría puede avanzar. Los identificadores deben permanecer ocultos.', 'Enmascarar y registrar'],
+      deny: ['Este uso no procede', 'Tener acceso para auditar no habilita el uso de los mismos datos para marketing.', 'No entregar información']
+    }[result.decision];
+    return `<div class="verdict-label">${icon(result.decision === 'deny' ? 'doc' : 'check')}<span>Decisión de la política</span></div><h3>${wording[0]}</h3><p>${wording[1]}</p><dl><div><dt>Finalidad</dt><dd>${scenario === 'analytics' ? 'Analítica financiera' : scenario === 'audit' ? 'Auditoría' : 'Marketing'}</dd></div><div><dt>Control requerido</dt><dd>${wording[2]}</dd></div></dl>`;
+  }
+
+  function decisionPreview() {
+    return `<section class="decision-preview" aria-label="Demostración de una decisión de gobierno"><div class="preview-top"><span class="status-dot" aria-hidden="true"></span><span class="preview-label">Demostración interactiva · datos sintéticos</span></div><h2>¿Quién puede usar este dato?</h2><p>Una misma política. Tres contextos de negocio. Elige uno.</p><div class="preview-options" role="group" aria-label="Contexto de uso del dato"><button data-scenario="analytics" aria-pressed="false" aria-controls="hero-decision">Analítica</button><button data-scenario="audit" aria-pressed="true" aria-controls="hero-decision">Auditoría</button><button data-scenario="other" aria-pressed="false" aria-controls="hero-decision">Otro uso</button></div><div id="hero-decision" class="hero-verdict" data-decision="mask" aria-live="polite" aria-atomic="true">${heroDecision()}</div><a class="preview-link" href="#laboratorio">Explorar la política completa ${icon('arrow')}</a></section>`;
+  }
+
+  function projectStories() {
+    const quality = data.cases.find(c => c.id === 'purview');
+    const storyTitles = {clasificacion:'Clasificar con IA, decidir con contexto.', acceso:'Habilitar acceso sin perder el control.', databricks:'Automatizar también exige gobernar el cambio.'};
+    return `<div class="work-grid"><article class="work-featured"><div class="work-copy"><h3>La calidad empieza con una decisión de negocio.</h3><p class="case-status">Purview · ${escape(quality.business.status)}</p><p>Convertir criterios dispersos en reglas revisables, con responsables y condiciones claras antes de publicar un lote.</p><p class="work-evidence">${escape(quality.business.proof)}</p><a class="text-link" href="#caso/purview">Explorar el caso de calidad ${icon('arrow')}</a></div><div class="rule-preview"><h4>Antes de publicar una regla</h4><p class="artifact-label">Vista del contrato sintético · demo.pedidos</p><div class="rule-row"><span>Importe no negativo</span><strong>Pendiente de revisión</strong></div><div class="rule-row"><span>Estado reconocido</span><strong>Pendiente de revisión</strong></div><div class="rule-row"><span>Publicación del lote</span><strong>No autorizada</strong></div><p class="artifact-footnote">La IA puede proponer. La aprobación sigue siendo una responsabilidad explícita.</p></div></article>${['clasificacion','acceso','databricks'].map(id => {const c = data.cases.find(item => item.id === id);return `<article class="work-story work-${id}"><h3>${storyTitles[id]}</h3><p class="case-status">${id === 'clasificacion' ? 'GenAI' : id === 'acceso' ? 'RBAC + ABAC' : 'Databricks'} · ${escape(c.business.status)}</p><p>${escape(c.business.intent)}</p><dl class="business-details"><div><dt>Evidencia disponible</dt><dd>${escape(c.business.proof)}</dd></div></dl><a class="text-link" href="#caso/${id}">Explorar ${id === 'clasificacion' ? 'clasificación' : id === 'acceso' ? 'acceso responsable' : 'automatización'} ${icon('arrow')}</a></article>`;}).join('')}</div>`;
+  }
+
+  function leadershipContent() {
+    return `<div class="leadership-grid"><div class="leadership-copy"><p>Mi trabajo conecta el criterio de negocio con las personas que definen, usan y protegen los datos. La tecnología importa; también quién decide, cómo se adopta y qué evidencia queda.</p><ul><li>Responsabilidades claras entre negocio, Data, TI y seguridad.</li><li>Calidad, catálogo, linaje y privacidad orientados al uso del dato.</li><li>Acompañamiento y estándares que puedan llevarse a la operación.</li></ul><div class="professional-profile"><details class="profile-details"><summary>Mi trayectoria y proyección profesional</summary><p>Soy estadístico e informático, con más de cuatro años de experiencia en banca, minería y educación, como Data Steward y Data Steward Senior.</p><p>Mi proyección profesional es asumir responsabilidades de Governance Lead y, a futuro, CDO. Tengo formación complementaria en Data Strategy y Lead Data Officer y experiencia con DAMA-DMBOK, DCAM, ownership, lineamientos y matrices RACI.</p><p>Esta síntesis corresponde a mi trayectoria. Los casos publicados son ejemplos de referencia, no expedientes corporativos.</p></details></div></div><div class="leadership-practice"><h3>Del problema al seguimiento</h3><ol><li><strong>Acordar qué importa</strong><span>Un uso del dato, un riesgo y un criterio de aceptación.</span></li><li><strong>Asignar la responsabilidad</strong><span>Quién propone, quién valida y quién autoriza.</span></li><li><strong>Probar y dejar evidencia</strong><span>Una decisión trazable antes de extender la solución.</span></li><li><strong>Medir y ajustar</strong><span>Adopción, calidad y excepciones; no solo actividad técnica.</span></li></ol></div></div>`;
+  }
 
   function graph() {
     return `<svg class="graph" viewBox="0 0 600 435" aria-label="Mapa navegable de proyectos y notas relacionadas">
@@ -51,7 +79,11 @@
   }
 
   function home() {
-    return `<div class="project-page">${heading('Gobierno de datos, de la estrategia a la operación.', 'Soy Daniel Carhuas, estadístico e informático y especialista en gobierno y gestión de datos. Conecto objetivos de negocio, personas y controles para habilitar analítica e IA con datos confiables.')}<div class="professional-profile"><p class="profile-track">Más de 4 años en banca, minería y educación. Experiencia como Data Steward y Data Steward Senior.</p><details class="profile-details"><summary>Mi enfoque y trayectoria</summary><p>Mi proyección profesional es asumir responsabilidades de Governance Lead y, a futuro, CDO. El foco está en orientar el gobierno hacia valor de negocio, adopción y gestión de riesgos.</p><ul><li><strong>Modelo de gobierno:</strong> experiencia con DAMA-DMBOK, DCAM, ownership, lineamientos y matrices RACI.</li><li><strong>Articulación y adopción:</strong> trabajo transversal con negocio, Data, TI y seguridad; capacitación y acompañamiento en estándares.</li><li><strong>Ejecución con criterio:</strong> calidad, catálogo, linaje, privacidad y automatización para llevar las decisiones a la práctica.</li></ul><p>Formación complementaria en Data Strategy y Lead Data Officer. Síntesis de mi trayectoria profesional; los casos de abajo son ejemplos de referencia, no expedientes corporativos.</p></details></div><section aria-label="Gobierno aplicado en proyectos"><h2 class="projects-heading">Gobierno aplicado en proyectos</h2><p class="projects-intro">Decisiones, responsabilidades y controles explicados con ejemplos públicos.</p>${projectList()}</section><div class="resource-footer"><div><h2>Marcos y recursos de gobierno</h2><p>Referencias, notas y demostraciones para profundizar en cada caso.</p></div><a class="text-link" href="#recursos">Explorar recursos ${icon('arrow')}</a></div></div>`;
+    return `<div class="executive-home"><section class="executive-hero"><div class="hero-copy"><h1><span>Gobernar datos.</span> <span>Habilitar negocio.</span></h1><p class="hero-description">Conecto prioridades de negocio, responsabilidades y controles para hacer posible una analítica y una IA confiables.</p><a class="button" href="#proyectos">Explorar los casos de negocio ${icon('arrow')}</a><p class="hero-byline">Daniel Carhuas<br><strong>Especialista en gobierno y gestión de datos</strong></p></div>${decisionPreview()}</section><div class="experience-band" aria-label="Trayectoria profesional"><div><strong>Banca, minería y educación</strong><span>Contextos de mi experiencia</span></div><div><strong>Data Steward / Senior</strong><span>Roles desempeñados</span></div><div><strong>Más de cuatro años</strong><span>De experiencia profesional</span></div></div><section class="selected-work" id="casos-seleccionados"><div class="section-heading"><div><h2>De la intención<br>a una decisión concreta.</h2></div><p>Cuatro casos para explorar cómo se conecta el gobierno con la ejecución. Diseños de referencia y un prototipo; sin atribuirles resultados productivos.</p></div>${projectStories()}</section><section class="leadership-section"><div class="section-heading"><h2>El gobierno necesita<br>personas que lo hagan posible.</h2></div>${leadershipContent()}</section><div class="resource-footer"><div><h2>Detrás de cada decisión, un criterio.</h2><p>Marcos de gobierno, notas conectadas y artefactos para profundizar.</p></div><a class="text-link" href="#recursos">Explorar los recursos ${icon('arrow')}</a></div></div>`;
+  }
+
+  function profilePage() {
+    return `${back('inicio','Volver al inicio')}${heading('Gobierno que conecta negocio, personas y ejecución.', 'Soy Daniel Carhuas, especialista en gobierno y gestión de datos. Mi enfoque combina responsabilidades, adopción y gestión de riesgos.')}<section class="leadership-section profile-page">${leadershipContent()}</section><div class="resource-footer"><div><h2>Mi criterio, llevado a casos concretos.</h2><p>Explora los diseños de referencia y la demostración interactiva.</p></div><a class="text-link" href="#proyectos">Ver casos de negocio ${icon('arrow')}</a></div>`;
   }
 
   function resourcesPage() {
@@ -70,16 +102,16 @@
 
   function related(ids, caseId) {
     const c = data.cases.find(item => item.id === caseId);
-    return `<aside class="related-panel"><h2>Notas conectadas</h2>${ids.map(id => { const note = lookupNote(id); return note ? `<a class="note-link" href="#nota/${id}">${escape(note.title)}</a>` : ''; }).join('')}<h2>Artefactos del caso</h2>${c.noArchitecture ? '' : '<a class="note-link" href="arquitectura.html">Diagrama Archify</a>'}${(c.downloads || []).map(item => `<a class="note-link" href="${escape(item.url)}" download>${escape(item.label)}</a>`).join('')}${caseId === 'acceso' ? '<a class="note-link" href="#laboratorio">Simulador de políticas</a><a class="note-link" href="https://github.com/DanielEnrique368/DanielEnrique368.github.io/blob/main/policy.js" target="_blank" rel="noopener noreferrer">Código del evaluador</a>' : ''}<h2>Alcance publicado</h2><p>Diseño de referencia y ejemplos sintéticos. La evidencia de un despliegue productivo no forma parte de este cuaderno.</p></aside>`;
+    return `<aside class="related-panel"><h2>Notas conectadas</h2>${ids.map(id => { const note = lookupNote(id); return note ? `<a class="note-link" href="#nota/${id}">${escape(note.title)}</a>` : ''; }).join('')}<h2>Artefactos del caso</h2>${c.noArchitecture ? '' : '<a class="note-link" href="arquitectura.html">Diagrama Archify</a>'}${(c.downloads || []).map(item => `<a class="note-link" href="${escape(item.url)}" download>${escape(item.label)}</a>`).join('')}${caseId === 'acceso' ? '<a class="note-link" href="#laboratorio">Simulador de políticas</a><a class="note-link" href="https://github.com/DanielEnrique368/DanielEnrique368.github.io/blob/main/policy.js" target="_blank" rel="noopener noreferrer">Código del evaluador</a>' : ''}<h2>Alcance publicado</h2><p>Diseño de referencia y ejemplos sintéticos. La evidencia de un despliegue productivo no forma parte de este portafolio.</p></aside>`;
   }
 
   function casePage(id) {
     const c = data.cases.find(item => item.id === id);
     if (!c) return missing();
-    return `${back('proyectos','Todos los proyectos')}<header class="case-heading"><span class="pill ${theme(id)}">${escape(c.category)}</span><h1>${escape(c.title)}</h1><p>${escape(c.summary)}</p></header>
+    return `${back('proyectos','Todos los casos de negocio')}<header class="case-heading"><h1>${escape(c.business.question)}</h1><p>${escape(c.summary)}</p><span class="pill ${theme(id)}">${escape(c.business.status)} · ${escape(c.category)}</span></header><section class="business-brief" aria-label="Lectura ejecutiva del caso"><p class="business-question">${escape(c.business.intent)}</p><div class="business-brief-grid"><dl><dt>Responsabilidades</dt><dd>${escape(c.business.contribution)}</dd></dl><dl><dt>Cómo medir el valor</dt><dd>${escape(c.business.measure)}</dd></dl><dl><dt>Qué puedes comprobar aquí</dt><dd>${escape(c.business.proof)}</dd></dl></div></section>
       <div class="case-toolbar"><div class="case-tabs" role="tablist" aria-label="Contenido del caso"><button id="tab-diseno" class="case-tab" role="tab" aria-selected="true" aria-controls="panel-diseno" data-tab="diseno">Enfoque de gobierno</button><button id="tab-artefacto" class="case-tab" role="tab" aria-selected="false" aria-controls="panel-artefacto" tabindex="-1" data-tab="artefacto">Artefacto técnico</button></div></div>
       <div class="article-layout"><div class="prose"><section id="panel-diseno" role="tabpanel" aria-labelledby="tab-diseno"><h2>El problema</h2><p>${escape(c.problem)}</p><h2>Responsabilidades y criterio de avance</h2><p>${escape(c.governance)}</p><h2>Cómo se lleva a la práctica</h2><p>${escape(c.approach)}</p><h2>Decisiones y responsabilidades</h2><ul class="decisions">${c.decisions.map(d => `<li><strong>${escape(d.title)}</strong>${escape(d.text)}</li>`).join('')}</ul><div class="reading-note">${escape(c.limits)}</div>${c.noArchitecture ? '<a class="button secondary" href="#nota/calidad-por-contrato">Leer criterios de calidad</a>' : id === 'acceso' ? '<a class="button" href="#laboratorio">Experimentar con la política</a>' : '<a class="button secondary" href="arquitectura.html">Ver el flujo completo</a>'}</section>
-      <section id="panel-artefacto" role="tabpanel" aria-labelledby="tab-artefacto" hidden><h2>Una pieza concreta del diseño</h2><p>${escape(c.evidence)}</p><div class="code-block"><div class="code-bar"><span>${escape(c.codeLanguage)}</span><button class="copy-button" data-copy="${id}">Copiar código</button></div><pre><code>${escape(c.code)}</code></pre></div><p class="notice" id="copy-status" role="status"></p><h2>Cómo leer este artefacto</h2><p>${c.artifactReading ? escape(c.artifactReading) : id === 'clasificacion' ? 'El contrato conserva la propuesta separada de la aprobación. La etiqueta no se convierte en una autorización hasta pasar por el responsable del dato.' : id === 'acceso' ? 'La función devuelve una decisión y sus obligaciones. Puedes ejecutar esta misma evaluación desde el laboratorio y contrastar sus condiciones.' : 'Este fragmento muestra dónde se versionan el job y sus parámetros. Hay que aportar valores de entorno y un notebook validado antes de poder desplegarlo.'}</p><div class="supporting">${downloadLinks(c.downloads)}${c.noArchitecture ? '' : `<a class="text-link" href="arquitectura.dataflow.json" download>Descargar especificación del mapa ${icon('doc')}</a>`}${id === 'acceso' ? '<a class="text-link" href="#laboratorio">Abrir laboratorio</a>' : ''}</div>${sourceLinks(c.sources)}</section></div>${related(c.related, id)}</div>`;
+      <section id="panel-artefacto" role="tabpanel" aria-labelledby="tab-artefacto" hidden><h2>Una pieza concreta del diseño</h2><p>${escape(c.evidence)}</p><div class="code-block"><div class="code-bar"><span>${escape(c.codeLanguage)}</span><button class="copy-button" data-copy="${id}">Copiar código</button></div><pre><code>${escape(c.code)}</code></pre></div><p class="notice" id="copy-status" role="status"></p><h2>Cómo leer este artefacto</h2><p>${c.artifactReading ? escape(c.artifactReading) : id === 'clasificacion' ? 'El contrato conserva la propuesta separada de la aprobación. La clasificación se publica tras su aprobación; el acceso se decide mediante una política independiente.' : id === 'acceso' ? 'La función devuelve una decisión y sus obligaciones. Puedes ejecutar esta misma evaluación desde el laboratorio y contrastar sus condiciones.' : 'Este fragmento muestra dónde se versionan el job y sus parámetros. Hay que aportar valores de entorno y un notebook validado antes de poder desplegarlo.'}</p><div class="supporting">${downloadLinks(c.downloads)}${c.noArchitecture ? '' : `<a class="text-link" href="arquitectura.dataflow.json" download>Descargar especificación del mapa ${icon('doc')}</a>`}${id === 'acceso' ? '<a class="text-link" href="#laboratorio">Abrir laboratorio</a>' : ''}</div>${sourceLinks(c.sources)}</section></div>${related(c.related, id)}</div>`;
   }
 
   function notesPage() {
@@ -98,7 +130,7 @@
     const n = lookupNote(id);
     if (!n) return missing();
     const linkedCases = data.cases.filter(c => c.related.includes(id));
-    return `${back('notas','Todas las notas')}<header class="case-heading"><span class="pill">${escape(n.category)}</span><h1>${escape(n.title)}</h1><p>${escape(n.summary)}</p></header><div class="article-layout"><article class="prose">${n.paragraphs.map(p => `<p>${escape(p)}</p>`).join('')}<h2>Decisión de diseño</h2><p>${escape(n.decision)}</p><h2>El compromiso que implica</h2><p>${escape(n.tradeoff)}</p>${sourceLinks([n.source,...(n.sources || [])].filter((item,index,all) => item && all.findIndex(other => other?.url === item.url) === index))}${n.attribution ? `<p class="notice">${escape(n.attribution)}</p>` : ''}<p class="notice">Las decisiones descritas son propuestas de este cuaderno.</p><div class="supporting"><a class="button secondary" href="notas/${n.id}.md" download>Descargar nota .md ${icon('doc')}</a>${downloadLinks(n.downloads)}</div><p class="notice">Markdown con enlaces entre notas, listo para incorporarlo a un cuaderno de Obsidian.</p></article><aside class="related-panel"><h2>Conectada con</h2>${n.related.map(id => `<a class="note-link" href="#nota/${id}">${escape(lookupNote(id).title)}</a>`).join('')}<h2>Aparece en estos proyectos</h2>${linkedCases.map(c => `<a class="note-link" href="#caso/${c.id}">${escape(c.shortTitle)}</a>`).join('')}<h2>Mapa de conexiones</h2><a class="note-link" href="#mapa">Explorar conexiones</a></aside></div>`;
+    return `${back('notas','Todas las notas')}<header class="case-heading"><span class="pill">${escape(n.category)}</span><h1>${escape(n.title)}</h1><p>${escape(n.summary)}</p></header><div class="article-layout"><article class="prose">${n.paragraphs.map(p => `<p>${escape(p)}</p>`).join('')}<h2>Decisión de diseño</h2><p>${escape(n.decision)}</p><h2>El compromiso que implica</h2><p>${escape(n.tradeoff)}</p>${sourceLinks([n.source,...(n.sources || [])].filter((item,index,all) => item && all.findIndex(other => other?.url === item.url) === index))}${n.attribution ? `<p class="notice">${escape(n.attribution)}</p>` : ''}<p class="notice">Las decisiones descritas son propuestas de este portafolio.</p><div class="supporting"><a class="button secondary" href="notas/${n.id}.md" download>Descargar nota .md ${icon('doc')}</a>${downloadLinks(n.downloads)}</div><p class="notice">Markdown con enlaces entre notas, listo para incorporarlo a un cuaderno de Obsidian.</p></article><aside class="related-panel"><h2>Conectada con</h2>${n.related.map(id => `<a class="note-link" href="#nota/${id}">${escape(lookupNote(id).title)}</a>`).join('')}<h2>Aparece en estos proyectos</h2>${linkedCases.map(c => `<a class="note-link" href="#caso/${c.id}">${escape(c.shortTitle)}</a>`).join('')}<h2>Mapa de conexiones</h2><a class="note-link" href="#mapa">Explorar conexiones</a></aside></div>`;
   }
 
   function labPage() {
@@ -127,26 +159,32 @@
     return heading('El archivo de aprendizaje.', 'Cursos, ejercicios y repositorios anteriores. Un historial de formación que acompaña a mi trayectoria en gobierno y gestión de datos.') + `<div class="archive-list">${repos.map(([repo,title,desc]) => `<a href="https://github.com/DanielEnrique368/${repo}" target="_blank" rel="noopener noreferrer"><span>${escape(title)}<small>${escape(desc)}</small></span>${icon('out')}</a>`).join('')}</div>`;
   }
 
-  function missing() { return heading('Esta página no está en el cuaderno.', 'Vuelve a los proyectos para continuar explorando.') + '<a class="button" href="#proyectos">Ver proyectos</a>'; }
+  function missing() { return heading('No encontramos esta página.', 'Vuelve a los casos de negocio para continuar explorando.') + '<a class="button" href="#proyectos">Ver casos de negocio</a>'; }
   function closeMenu() { sidebar.classList.remove('open'); menu.setAttribute('aria-expanded','false'); menu.setAttribute('aria-label','Abrir navegación'); }
   function render(initial = false) {
     const [route = 'inicio', id] = location.hash.slice(1).split('/');
-    const active = ['','inicio','proyectos','caso'].includes(route) ? 'proyectos' : ['recursos','mapa','notas','nota','laboratorio'].includes(route) ? 'recursos' : 'archivo';
-    const labels = {inicio:'Proyectos',proyectos:'Proyectos',caso:'Proyectos / Caso de estudio',recursos:'Recursos',mapa:'Recursos / Mapa',notas:'Recursos / Notas',nota:'Recursos / Nota',laboratorio:'Recursos / Laboratorio',archivo:'Archivo de aprendizaje'};
-    const handlers = {inicio:home,proyectos:home,recursos:resourcesPage,mapa:mapPage,caso:() => casePage(id),notas:notesPage,nota:() => notePage(id),laboratorio:labPage,archivo:archivePage};
+    const active = ['','inicio','proyectos','caso'].includes(route) ? 'proyectos' : route === 'perfil' ? 'perfil' : ['recursos','mapa','notas','nota','laboratorio'].includes(route) ? 'recursos' : null;
+    const handlers = {inicio:home,proyectos:home,perfil:profilePage,recursos:resourcesPage,mapa:mapPage,caso:() => casePage(id),notas:notesPage,nota:() => notePage(id),laboratorio:labPage,archivo:archivePage};
     const routeKey = route || 'inicio';
     app.innerHTML = (Object.hasOwn(handlers,routeKey) ? handlers[routeKey] : missing)();
-    document.getElementById('breadcrumb').textContent = labels[route || 'inicio'] || 'Cuaderno';
     document.querySelectorAll('[data-nav]').forEach(a => { if(a.dataset.nav === active) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
     const title = app.querySelector('h1');
-    document.title = `${title ? title.textContent : 'Cuaderno'} | Daniel Carhuas`;
+    document.title = `${title ? title.textContent : 'Gobierno de datos e IA'} | Daniel Carhuas`;
     if (route === 'notas') updateNotes();
     if (route === 'laboratorio') evaluatePolicy();
     closeMenu();
     if (!initial) { main.focus({preventScroll:true}); window.scrollTo(0,0); }
+    if (route === 'proyectos') document.getElementById('casos-seleccionados')?.scrollIntoView({behavior:'instant',block:'start'});
   }
 
   app.addEventListener('click', async event => {
+    const scenario = event.target.closest('[data-scenario]');
+    if (scenario && Object.hasOwn(heroScenarios, scenario.dataset.scenario)) {
+      app.querySelectorAll('[data-scenario]').forEach(button => button.setAttribute('aria-pressed', String(button === scenario)));
+      const panel = document.getElementById('hero-decision');
+      panel.dataset.decision = window.PolicyDemo.evaluate(heroScenarios[scenario.dataset.scenario]).decision;
+      panel.innerHTML = heroDecision(scenario.dataset.scenario);
+    }
     const tab = event.target.closest('[data-tab]');
     if(tab) {
       document.querySelectorAll('[data-tab]').forEach(b => { const active = b === tab; b.setAttribute('aria-selected',String(active)); b.tabIndex = active ? 0 : -1; document.getElementById(`panel-${b.dataset.tab}`).hidden = !active; });
@@ -176,6 +214,13 @@
   searchShortcut.setAttribute('aria-label','Buscar notas');
   searchShortcut.addEventListener('click',() => setTimeout(()=>document.getElementById('note-search')?.focus(),0));
   document.addEventListener('click',event => {if(sidebar.classList.contains('open') && !sidebar.contains(event.target) && !menu.contains(event.target)) closeMenu();});
+  document.addEventListener('click', event => {
+    const link = event.target.closest('a[href^="#"]');
+    if (!link || link.hash !== location.hash || link.hash === '#contenido') return;
+    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return;
+    event.preventDefault();
+    render();
+  });
   document.addEventListener('keydown',event => {
     if(event.key==='Escape') {if(sidebar.classList.contains('open')) {closeMenu();menu.focus();}}
     if(event.key==='/' && !event.ctrlKey && !event.metaKey && !['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName)) {event.preventDefault();if(location.hash!=='#notas') location.hash='notas';setTimeout(()=>document.getElementById('note-search')?.focus(),0);}

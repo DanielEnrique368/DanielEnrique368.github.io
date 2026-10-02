@@ -47,6 +47,14 @@
     cases: [
       {
         id: "clasificacion",
+        business: {
+          question: "¿Qué datos podemos usar y qué revisión requieren?",
+          intent: "Facilitar el uso responsable del dato con significado, sensibilidad y aprobación trazables.",
+          contribution: "Articulación propuesta entre dueño del dato, steward y seguridad para acordar categorías, revisar sugerencias y resolver ambigüedades.",
+          measure: "Medir en un piloto errores por categoría, tiempo de revisión y proporción de etiquetas con responsable y aprobación.",
+          status: "Diseño de referencia",
+          proof: "Mapa de arquitectura y contrato JSON sintético de clasificación."
+        },
         title: "Del nombre de una columna a una clasificación defendible",
         shortTitle: "Clasificación y uso responsable de IA",
         category: "Clasificación de datos",
@@ -67,6 +75,14 @@
       },
       {
         id: "acceso",
+        business: {
+          question: "¿Quién puede usar este dato, con qué fin y bajo qué condiciones?",
+          intent: "Agilizar decisiones de acceso con reglas comprensibles, restricciones explícitas y responsables definidos.",
+          contribution: "Articulación propuesta entre negocio, seguridad y plataforma para separar autorización, aplicación de permisos y revisión del acceso efectivo.",
+          measure: "Contrastar en un piloto decisiones esperadas y obtenidas, tiempo de resolución y solicitudes con finalidad justificada.",
+          status: "Prototipo interactivo",
+          proof: "Simulador local RBAC + ABAC con condiciones y decisiones explicadas."
+        },
         title: "Acceso según rol y contexto del dato",
         shortTitle: "Privacidad y gobierno del acceso",
         category: "Gobierno de acceso",
@@ -87,6 +103,14 @@
       },
       {
         id: "databricks",
+        business: {
+          question: "¿Cómo cambiar una automatización sin perder control de la entrega?",
+          intent: "Reducir el riesgo de cambios y facilitar la continuidad operativa con versiones y evidencias revisables.",
+          contribution: "Articulación propuesta entre negocio, ingeniería y operación para acordar aceptación, trazabilidad de versiones y respuesta ante fallos.",
+          measure: "Medir en un piloto cambios con evidencia completa, fallos tras despliegue y tiempo de recuperación comprobado.",
+          status: "Diseño de referencia",
+          proof: "Fragmento YAML de configuración y notas de despliegue y observabilidad."
+        },
         title: "Hacer que una automatización también se pueda cambiar",
         shortTitle: "Automatización con controles operativos",
         category: "Automatización",
@@ -107,6 +131,14 @@
       },
       {
         id: "purview",
+        business: {
+          question: "¿Cómo ampliar controles de calidad con criterios de negocio consistentes?",
+          intent: "Extender controles de calidad con reglas revisadas y seguimiento de lo aprobado, publicado y pendiente.",
+          contribution: "Articulación propuesta entre dueño del dato, steward e ingeniería para acordar criterios, revisar reglas y controlar su publicación por lote.",
+          measure: "Medir en un piloto reglas revisadas, duplicados detectados, fallos de publicación y tiempo desde propuesta hasta decisión.",
+          status: "Diseño de referencia",
+          proof: "Contrato JSON descargable con reglas sintéticas y revisión pendiente."
+        },
         title: "Calidad en Purview: de reglas aisladas a lotes revisables",
         shortTitle: "Calidad de datos a escala",
         category: "Calidad de datos",
