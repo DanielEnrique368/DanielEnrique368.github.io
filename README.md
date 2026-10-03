@@ -1,8 +1,8 @@
-# Daniel Carhuas · Gobierno de datos e IA
+# Daniel Carhuas · Data & AI Governance Lead
 
 [Abrir portafolio](https://danielenrique368.github.io) · [Laboratorio de políticas](https://danielenrique368.github.io/#laboratorio) · [Arquitectura interactiva](https://danielenrique368.github.io/arquitectura.html)
 
-Portafolio profesional de un especialista en gobierno y gestión de datos, con proyección a Governance Lead / CDO. El posicionamiento prioriza estrategia, responsabilidades, adopción y control; no presenta al autor como arquitecto de datos ni como CDO en ejercicio.
+Portafolio de Daniel Carhuas con posicionamiento Data & AI Governance Lead: estrategia, modelo operativo, responsabilidad, adopción y ejecución. La trayectoria mantiene los cargos realmente desempeñados; el sitio no lo presenta como arquitecto de datos ni como CDO en ejercicio.
 
 La síntesis de trayectoria está basada en el CV facilitado por el autor. No se publica ese documento ni sus datos de contacto. Los casos públicos siguen siendo referencias didácticas, separados de la experiencia profesional.
 
@@ -14,7 +14,7 @@ Sitio estático con cuatro casos de referencia: clasificación con recomendació
 - Casos de negocio lleva a cuatro ejemplos con intención, responsabilidades, medición propuesta y evidencia pública. Los beneficios esperados no se presentan como resultados conseguidos.
 - [Marcos aplicados](https://danielenrique368.github.io/#marcos) conecta fuentes, decisiones, evidencia y revisión. Incluye una plantilla editorial propia; la serie por capítulos de DAMA-DMBOK queda pendiente del ejemplar y de experiencias validadas con el autor.
 - [Programa Purview](https://danielenrique368.github.io/#purview) organiza calidad, ownership, productos, alertas, reportes y metadatos de negocio. Permite explorar cuatro indicadores propuestos, sin datos conectados ni resultados atribuidos a una implementación.
-- Mi enfoque separa la trayectoria profesional y la proyección Governance Lead / CDO de los ejemplos ilustrativos.
+- Mi enfoque desarrolla cinco ámbitos de experiencia: modelo federado, contexto y calidad, privacidad, gobierno de IA y continuidad operativa. Cada uno conecta trabajo realizado, decisión de negocio y evidencia esperada, sin exponer entregables internos.
 - Recursos reúne las notas, el mapa de conexiones, el visor Archify y el laboratorio.
 - Archivo de aprendizaje, en el pie de página, mantiene los cursos y ejercicios separados de los casos principales.
 - Prueba cambios de rol, departamento, sensibilidad y propósito en el laboratorio.
@@ -32,7 +32,7 @@ Los ejemplos son sintéticos. GenAI se presenta como diseño y contrato de datos
 |---|---|
 | `index.html`, `styles.css`, `executive.css`, `app.js` | Interfaz, sistema visual ejecutivo, navegación por hash y búsqueda |
 | `cases.js` | Casos y notas; fuente del contenido visible |
-| `governance.js` | Método de lectura aplicada y propuesta de gobierno con Purview |
+| `governance.js`, `profile.js` | Método de lectura aplicada, propuesta Purview y ámbitos de experiencia profesional |
 | `policy.js` | Política de demostración, exportada para navegador y Node |
 | `recursos/*.json` | Contratos sintéticos de calidad y gobierno de IA; plantilla de lectura aplicada sin completar |
 | `notas/*.md` | Notas descargables para Obsidian |

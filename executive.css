@@ -589,3 +589,47 @@ select { border-color: #b8cbb8; background: var(--paper); border-radius: 5px; }
   .program-pillar dl > div { grid-template-columns: 1fr; gap: 5px; }
   .signal-controls select { font-size: 12px; padding-inline: 9px; }
 }
+
+/* Applied experience: a reading sequence of decisions, with evidence alongside. */
+.profile-depth-link { margin-top: 25px; }
+.profile-page.leadership-section { margin-top: 42px; }
+.hero-byline strong { font-size: 15px; font-weight: 700; color: var(--ink); }
+.profile-areas { margin-top: 78px; }
+.profile-areas > h2 { max-width: 28ch; font-size: clamp(31px, 3.2vw, 43px); line-height: 1.17; letter-spacing: -.04em; font-weight: 600; margin: 0 0 22px; }
+.profile-areas > p { max-width: 68ch; color: var(--muted); font-size: 15px; line-height: 1.85; margin: 0; }
+.profile-areas-list { margin-top: 35px; border-top: 1px solid var(--line); }
+.profile-area { display: grid; grid-template-columns: minmax(0, .3fr) minmax(0, .7fr); gap: clamp(30px, 4.7vw, 68px); padding: 42px 0 46px; border-bottom: 1px solid var(--line); scroll-margin-top: 36px; }
+.profile-area > h3 { min-width: 0; font-size: clamp(25px, 2.25vw, 31px); line-height: 1.3; letter-spacing: -.035em; font-weight: 600; margin: 0; }
+.profile-area-body { min-width: 0; }
+.profile-area-body > p { max-width: 72ch; font-size: 15px; line-height: 1.9; margin: 0 0 25px; }
+.profile-area-body dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; margin: 0 0 19px; }
+.profile-area-body dl > div { min-width: 0; }
+.profile-area-body dt { color: var(--ink); font-size: 12px; font-weight: 650; line-height: 1.7; margin-bottom: 8px; }
+.profile-area-body dd { color: var(--muted); font-size: 13px; line-height: 1.85; margin: 0; }
+.profile-area-body .text-link { min-height: 44px; margin-top: 2px; max-width: 100%; line-height: 1.7; }
+.site-header .identity > span:not(.monogram) { min-width: 0; }
+.site-header .monogram { flex-shrink: 0; }
+.site-header .identity small { white-space: normal; line-height: 1.5; }
+@media (max-width: 1040px) {
+  .profile-area { grid-template-columns: minmax(0, .32fr) minmax(0, .68fr); gap: 31px; }
+  .profile-area > h3 { font-size: 26px; }
+  .profile-area-body dl { grid-template-columns: 1fr; gap: 21px; }
+  .profile-area-body > p { font-size: 14px; }
+}
+@media (max-width: 840px) {
+  .site-header .identity { max-width: calc(100% - 58px); flex-shrink: 1; }
+  .site-header .menu-button { flex-shrink: 0; }
+  .profile-areas { margin-top: 60px; }
+}
+@media (max-width: 720px) {
+  .profile-areas { margin-top: 49px; }
+  .profile-areas > h2 { font-size: 31px; margin-bottom: 18px; }
+  .profile-areas > p { font-size: 14px; }
+  .profile-areas-list { margin-top: 28px; }
+  .profile-area { grid-template-columns: 1fr; gap: 20px; padding: 29px 0 33px; }
+  .profile-area > h3 { font-size: 26px; max-width: 31ch; }
+  .profile-area-body > p { font-size: 14px; margin-bottom: 24px; }
+  .profile-area-body dl { gap: 19px; margin-bottom: 15px; }
+  .profile-area-body dd { font-size: 13px; }
+  .profile-area-body .text-link { font-size: 13px; }
+}
