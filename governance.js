@@ -4,7 +4,7 @@
   window.GOVERNANCE_LIBRARY = {
     framework: {
       title: "Marcos aplicados al negocio.",
-      intro: "Conecto necesidades de negocio con prácticas DAMA-DMBOK, capacidades y evidencia DCAM para proponer mejoras verificables. Método y notas propias disponibles.",
+      intro: "Conecto necesidades de negocio con prácticas DAMA-DMBOK, capacidades y evidencia DCAM para proponer mejoras verificables. La metodología integrada incorpora la estructura PREC del material seleccionado, con una lectura aplicada propia.",
       comparison: [
         {
           name: "DAMA-DMBOK",
@@ -84,6 +84,60 @@
         }
       ],
       disclaimer: "Serie DAMA-DMBOK por capítulos en preparación. Las conexiones son mi interpretación propuesta, no equivalencias oficiales ni evaluaciones puntuadas. Distingo referencias, propuestas y experiencia validada."
+    },
+    operatingModels: {
+      intro: "Un modelo de gobernanza distribuye autoridad, ejecución y rendición de cuentas; no es una herramienta. Esta síntesis compara opciones para decidir según el contexto. Pueden coexistir y evolucionar: no hay una respuesta universal.",
+      models: [
+        {
+          id: "centralizado",
+          name: "Centralizado",
+          allocation: "Una instancia central concentra políticas y decisiones comunes; las áreas pueden ejecutar actividades cotidianas con responsabilidades delimitadas.",
+          fit: "Lo consideraría al consolidar criterios comunes o concentrar conocimiento escaso, comprobando que el equipo central pueda atender la demanda.",
+          tradeoff: "Favorece consistencia; puede acumular aprobaciones y alejar las decisiones del contexto de negocio."
+        },
+        {
+          id: "descentralizado",
+          name: "Descentralizado",
+          allocation: "Las unidades o dominios asumen mayor autonomía sobre decisiones y prácticas locales, sin quedar exentos de obligaciones corporativas.",
+          fit: "Lo evaluaría para necesidades locales distintas, con responsables capaces de sostener sus decisiones, controles y operación.",
+          tradeoff: "Acerca la decisión al negocio; puede duplicar esfuerzos y fragmentar definiciones, controles y datos compartidos."
+        },
+        {
+          id: "federado",
+          name: "Federado",
+          allocation: "Una función central acuerda reglas comunes y supervisión; los dominios gobiernan sus datos dentro de ese marco y participan en la coordinación.",
+          fit: "Lo consideraría cuando varios dominios necesitan autonomía, pero comparten datos, riesgos o decisiones que requieren coherencia transversal.",
+          tradeoff: "Combina contexto local y acuerdos comunes; exige mandatos claros, coordinación y un mecanismo efectivo para resolver conflictos."
+        }
+      ],
+      decisionCriteria: [
+        {
+          title: "Riesgo y derechos de decisión",
+          question: "¿Qué decisiones requieren revisión común y cuáles puede asumir un dominio? ¿Quién acepta el riesgo y autoriza excepciones?"
+        },
+        {
+          title: "Capacidad y responsabilidad",
+          question: "¿Hay responsables con mandato, tiempo y capacidades para operar los controles, responder por sus decisiones y conservar evidencia?"
+        },
+        {
+          title: "Dependencias entre dominios",
+          question: "¿Qué definiciones, productos o usos cruzan áreas? ¿Cómo se acuerdan cambios sin trasladar el problema a otro consumidor?"
+        },
+        {
+          title: "Agilidad y costo de coordinación",
+          question: "¿Dónde se acumulan demoras o duplicidades? ¿Qué distribución de decisiones conviene probar y revisar antes de ampliar su alcance?"
+        }
+      ],
+      sources: [
+        {
+          label: "AWS · estilos de gobernanza de datos",
+          url: "https://aws.amazon.com/what-is/data-governance/"
+        },
+        {
+          label: "Microsoft Learn · enfoque federado de gobernanza",
+          url: "https://learn.microsoft.com/en-us/purview/data-governance-overview#federated-approach-to-data-governance"
+        }
+      ]
     },
     purview: {
       pillars: [

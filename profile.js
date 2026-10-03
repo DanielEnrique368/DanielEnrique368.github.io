@@ -5,12 +5,12 @@
     "areas": [
       {
         "id": "modelo-federado",
-        "title": "Modelo federado y responsabilidades",
+        "title": "Modelos de gobernanza y responsabilidades",
         "experience": "Formalicé un marco de Gobierno de Datos e IA que conectó políticas, lineamientos y procedimientos con responsabilidades de negocio. Definí el papel de los Data Owners, los niveles de decisión y la matriz RACI. Mi trabajo articuló a Data, negocio, Seguridad, TI y Calidad para convertir el modelo federado en acuerdos que cada función pudiera aplicar y revisar.",
-        "decision": "Distingo quién propone, ejecuta, acepta y autoriza, y qué asunto necesita escalamiento; una responsabilidad documentada debe tener un ámbito y una persona que la asuma.",
+        "decision": "Evalúo modelos centralizados, descentralizados y federados según riesgo, autonomía, capacidad de los responsables y dependencias entre áreas; después acuerdo quién decide, qué se delega y cómo escalar conflictos.",
         "evidence": "Mandatos aceptados, matriz RACI, versiones de políticas y registro de decisiones: permiten saber quién tiene autoridad y qué acuerdos siguen pendientes.",
-        "link": "#marcos",
-        "label": "Explorar marcos aplicados"
+        "link": "#modelos",
+        "label": "Comparar modelos de gobernanza"
       },
       {
         "id": "catalogo-calidad",

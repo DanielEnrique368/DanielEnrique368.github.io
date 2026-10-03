@@ -6,7 +6,7 @@ Portafolio de Daniel Carhuas con posicionamiento Data & AI Governance Lead: estr
 
 La síntesis de trayectoria está basada en el CV facilitado por el autor. No se publica ese documento ni sus datos de contacto. Los casos públicos siguen siendo referencias didácticas, separados de la experiencia profesional.
 
-Sitio estático con cuatro casos de referencia: clasificación con recomendación GenAI, calidad en Purview, acceso RBAC + ABAC y automatización en Databricks. Incluye nueve notas conectadas, marcos de gobernanza aplicados, dos contratos JSON descargables y un evaluador de políticas ejecutable en el navegador.
+Sitio estático con un caso de gobierno E2E en minería y cuatro diseños de referencia: clasificación con recomendación GenAI, calidad en Purview, acceso RBAC + ABAC y automatización en Databricks. Incluye nueve notas conectadas, marcos de gobernanza aplicados, comparación de modelos operativos, dos contratos JSON descargables y un evaluador de políticas ejecutable en el navegador.
 
 ## Explorar
 
@@ -14,7 +14,9 @@ Sitio estático con cuatro casos de referencia: clasificación con recomendació
 - Proyectos abre una vista independiente (`#proyectos`) con cuatro ejemplos: no desplaza la portada hacia abajo. Cada proyecto conserva intención, responsabilidades, medición propuesta y evidencia pública; los beneficios esperados no son resultados conseguidos.
 - [Marcos aplicados](https://danielenrique368.github.io/#marcos) conecta DAMA-DMBOK y DCAM mediante prácticas, capacidades y decisiones de mejora. Incluye tres conexiones propias (ownership, calidad y metadatos), referencias oficiales y fichas propias descargables. No es un mapeo ni una evaluación oficial; no mezcla la experiencia en DCAM 2.2 con la documentación pública v3. La serie DAMA-DMBOK por capítulos sigue pendiente del ejemplar.
 - [Programa Purview](https://danielenrique368.github.io/#purview) organiza calidad, ownership, productos, alertas, reportes y metadatos de negocio. Permite explorar cuatro indicadores propuestos, sin datos conectados ni resultados atribuidos a una implementación.
-- Mi enfoque desarrolla cinco ámbitos de experiencia: modelo federado, contexto y calidad, privacidad, gobierno de IA y continuidad operativa. Cada uno conecta trabajo realizado, decisión de negocio y evidencia esperada, sin exponer entregables internos.
+- Mi enfoque desarrolla cinco ámbitos: modelos de gobernanza y responsabilidades, contexto y calidad, privacidad, gobierno de IA y continuidad operativa. La experiencia federada se distingue del criterio para evaluar otros modelos. Cada ámbito conecta trabajo realizado, decisión de negocio y evidencia esperada, sin exponer entregables internos.
+- [Gobierno E2E en minería](https://danielenrique368.github.io/#mineria) presenta una única lámina original seleccionada de metodología integrada PREC, DAMA y DCAM, sin nombres corporativos ni sedes. La lectura del caso de costos mineros es ilustrativa, no acredita despliegues ni ahorros. Los gates son de la propuesta, no un método oficial DCAM.
+- [Modelos de gobernanza](https://danielenrique368.github.io/#modelos) compara centralizado, descentralizado y federado, con distribución de autoridad, contextos, compromisos y criterios de elección. No prescribe un modelo universal ni atribuye experiencia implementando todos ellos.
 - Recursos reúne las notas, el mapa de conexiones, el visor Archify y el laboratorio.
 - Archivo de aprendizaje, en el pie de página, mantiene los cursos y ejercicios separados de los casos principales.
 - Prueba cambios de rol, departamento, sensibilidad y propósito en el laboratorio.

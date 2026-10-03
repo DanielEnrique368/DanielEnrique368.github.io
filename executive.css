@@ -633,7 +633,58 @@ select { border-color: #b8cbb8; background: var(--paper); border-radius: 5px; }
 }
 
 /* Complementary frameworks, followed by their shared business decisions. */
+.strategy-feature { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 56px; padding: 38px 0 44px; margin-bottom: 42px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.strategy-feature h2 { max-width: 28ch; font-size: clamp(28px, 3vw, 39px); line-height: 1.2; letter-spacing: -.035em; font-weight: 600; margin: 0 0 20px; }
+.strategy-feature p, .strategy-feature dd { max-width: 65ch; font-size: 15px; line-height: 1.85; color: var(--muted); }
+.strategy-feature .text-link { margin-top: 16px; min-height: 44px; }
+.strategy-feature dl { align-self: center; margin: 0; }
+.strategy-feature dl > div + div { margin-top: 25px; }
+.strategy-feature dt, .strategy-reading dt, .strategy-measure dt, .model-criteria dt { font-size: 17px; font-weight: 650; color: var(--ink); margin-bottom: 9px; }
+.strategy-feature dd, .strategy-reading dd, .strategy-measure dd, .model-criteria dd { margin: 0; }
+.strategy-question, .strategy-artifact, .strategy-reading, .strategy-route, .strategy-measure, .model-comparison, .model-criteria, .model-authority { margin-top: 62px; }
+.strategy-question { max-width: 76ch; margin-top: 34px; }
+.strategy-question h2, .strategy-artifact h2, .strategy-reading h2, .strategy-route h2, .strategy-measure h2, .model-comparison h2, .model-criteria h2, .model-authority h2, .framework-applied h2 { max-width: 35ch; font-size: clamp(26px, 3vw, 34px); font-weight: 600; line-height: 1.25; letter-spacing: -.03em; margin: 0 0 21px; }
+.strategy-question p, .strategy-artifact > p, .strategy-route > p, .strategy-reading dd, .strategy-measure dd, .model-comparison > p, .model-criteria p, .model-criteria dd, .model-authority p, .framework-applied p { max-width: 72ch; font-size: 15px; line-height: 1.9; color: var(--muted); }
+.strategy-artifact figure { margin: 30px 0 0; }
+.strategy-image-link { display: block; line-height: 0; border: 1px solid var(--line); background: #fff; }
+.strategy-image-link:hover { border-color: var(--accent); }
+.strategy-image-link img { display: block; width: 100%; height: auto; }
+.strategy-artifact figcaption { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; color: var(--muted); font-size: 13px; line-height: 1.8; margin-top: 10px; }
+.strategy-artifact figcaption a { min-height: 44px; }
+.strategy-artifact > .strategy-scope { max-width: 100ch; font-size: 13px; line-height: 1.8; margin-top: 20px; }
+.strategy-reading dl, .strategy-measure dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 35px; margin: 29px 0 0; }
+.strategy-reading dl > div, .strategy-measure dl > div { min-width: 0; padding-top: 22px; border-top: 1px solid var(--line); }
+.strategy-route ol { list-style: none; counter-reset: governance-step; margin: 30px 0 0; padding: 0; border-top: 1px solid var(--line); }
+.strategy-route li { counter-increment: governance-step; display: grid; grid-template-columns: minmax(0, .32fr) minmax(0, .68fr); gap: 35px; padding: 27px 0; border-bottom: 1px solid var(--line); }
+.strategy-route h3 { font-size: 22px; font-weight: 600; line-height: 1.5; margin: 0; }
+.strategy-route h3::before { content: counter(governance-step) '. '; color: var(--accent); font-variant-numeric: tabular-nums; }
+.strategy-route li p { max-width: 65ch; font-size: 15px; line-height: 1.85; color: var(--muted); margin: 0; }
+.strategy-route li .strategy-evidence { margin-top: 13px; font-size: 14px; }
+.strategy-evidence strong { color: var(--ink); font-weight: 600; }
+.strategy-measure .notice { margin-top: 28px; max-width: 95ch; }
+.model-option { padding: 31px 0 35px; border-bottom: 1px solid var(--line); }
+.model-option:first-of-type { border-top: 1px solid var(--line); margin-top: 29px; }
+.model-option h3 { font-size: 28px; font-weight: 600; letter-spacing: -.025em; margin: 0 0 23px; }
+.model-option dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px; margin: 0; }
+.model-option dt { font-size: 13px; line-height: 1.7; font-weight: 650; color: var(--ink); margin-bottom: 10px; }
+.model-option dd { font-size: 14px; line-height: 1.9; color: var(--muted); margin: 0; }
+.model-criteria dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 64px; margin-top: 30px; }
+.model-criteria dl > div { padding-top: 21px; border-top: 1px solid var(--line); }
+.framework-applied { padding: 30px 0 35px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin: 30px 0 40px; }
+.framework-applied .supporting { gap: 16px 35px; }
+@media (max-width: 760px) {
+  .strategy-feature { grid-template-columns: 1fr; gap: 28px; padding: 28px 0 32px; margin-bottom: 30px; }
+  .strategy-question, .strategy-artifact, .strategy-reading, .strategy-route, .strategy-measure, .model-comparison, .model-criteria, .model-authority { margin-top: 43px; }
+  .strategy-question { margin-top: 26px; }
+  .strategy-reading dl, .strategy-measure dl, .model-option dl, .model-criteria dl { grid-template-columns: 1fr; gap: 25px; }
+  .strategy-route li { grid-template-columns: 1fr; gap: 13px; padding: 25px 0; }
+  .model-option { padding: 27px 0 31px; }
+  .model-option h3 { font-size: 26px; }
+  .strategy-artifact figcaption { align-items: flex-start; flex-direction: column; }
+  .framework-applied .supporting { align-items: flex-start; flex-direction: column; }
+}
 .framework-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; margin: 43px 0 60px; }
+@media (max-width: 380px) { .model-heading h1 { font-size: 32px; } }
 .framework-pair > article { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; padding-bottom: 31px; border-bottom: 1px solid var(--line); }
 .framework-pair h2 { font-size: 37px; line-height: 1.15; font-weight: 600; letter-spacing: -.035em; margin: 0 0 11px; }
 .framework-pair .framework-role { color: var(--accent); font-size: 14px; line-height: 1.7; font-weight: 600; margin: 0 0 26px; }

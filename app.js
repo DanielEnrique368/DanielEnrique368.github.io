@@ -13,7 +13,7 @@
   const heading = (title, text) => `<div class="page-heading"><h1>${escape(title)}</h1><p>${escape(text)}</p></div>`;
   const back = (to, label) => `<a class="backlink" href="#${to}">${icon('arrow')}${label}</a>`;
 
-  if (!data || !window.PolicyDemo || !governanceLibrary || !leadershipProfile) {
+  if (!data || !window.PolicyDemo || !governanceLibrary || !leadershipProfile || !window.STRATEGY_PAGES) {
     app.innerHTML = heading('El portafolio no pudo cargarse.', 'Recarga la página para volver a intentarlo.') + '<a class="button" href="arquitectura.html">Abrir diagrama de referencia</a>';
     return;
   }
@@ -91,6 +91,7 @@
 
   function projectsPage() {
     return `<div class="projects-page">${back('inicio','Volver al inicio')}${heading('Proyectos de gobierno de datos e IA.', 'Explora los problemas de negocio, las decisiones de gobierno y los artefactos de cada proyecto. Diseños públicos de referencia y un prototipo; separados de la trayectoria profesional.')}
+      ${window.STRATEGY_PAGES.feature()}
       ${projectStories()}
       <div class="resource-footer"><div><h2>Profundizar en el criterio detrás del proyecto.</h2><p>Conoce mi experiencia en modelo operativo, privacidad, calidad y gobierno de IA.</p></div><a class="text-link" href="#perfil">Ver mi enfoque ${icon('arrow')}</a></div>
     </div>`;
@@ -103,6 +104,8 @@
   function resourcesPage() {
     const resources = [
       ['#marcos','doc','Marcos aplicados al negocio','DAMA-DMBOK y DCAM: prácticas, capacidades y decisiones de mejora basadas en evidencia.'],
+      ['#mineria','doc','Gobierno E2E en minería','Metodología integrada PREC, DAMA y DCAM aplicada a una decisión de negocio.'],
+      ['#modelos','network','Modelos de gobernanza','Centralizado, descentralizado y federado: autoridad, contexto y compromisos.'],
       ['#notas','doc','Notas y marcos de gobernanza','Calidad, gobierno de datos e IA y decisiones de plataforma. Con búsqueda y descargas.'],
       ['#mapa','network','Mapa de conexiones','Cómo se relacionan los casos y sus notas.'],
       ['arquitectura.html','network','Arquitectura del sistema','Visor Archify: clasificación, revisión, políticas y operación.'],
@@ -118,6 +121,7 @@
   function frameworksPage() {
     const framework = governanceLibrary.framework;
     return `${heading(framework.title, framework.intro)}
+      <section class="framework-applied"><h2>Ver los marcos trabajando juntos.</h2><p>Una lámina original integra DAMA, DCAM y PREC. La acompaño de una lectura del caso minero que conecta costos, responsabilidades, calidad y decisiones.</p><div class="supporting"><a class="text-link" href="#mineria">Explorar la metodología y el caso ${icon('arrow')}</a><a class="text-link" href="#modelos">Comparar modelos de gobernanza ${icon('arrow')}</a></div></section>
       <section class="framework-pair" aria-label="DAMA-DMBOK y DCAM">
         ${framework.comparison.map(item => `<article><h2>${escape(item.name)}</h2><p class="framework-role">${escape(item.role)}</p><h3>${escape(item.question)}</h3><p>${escape(item.description)}</p><a class="text-link" href="${escape(item.url)}" target="_blank" rel="noopener noreferrer">${escape(item.label)} ${icon('out')}</a></article>`).join('')}
       </section>
@@ -209,8 +213,8 @@
   function closeMenu() { sidebar.classList.remove('open'); menu.setAttribute('aria-expanded','false'); menu.setAttribute('aria-label','Abrir navegación'); }
   function render(initial = false) {
     const [route = 'inicio', id] = location.hash.slice(1).split('/');
-    const active = ['','inicio'].includes(route) ? 'inicio' : ['proyectos','caso','purview'].includes(route) ? 'proyectos' : route === 'marcos' ? 'marcos' : route === 'perfil' ? 'perfil' : ['recursos','mapa','notas','nota','laboratorio'].includes(route) ? 'recursos' : null;
-    const handlers = {inicio:home,proyectos:projectsPage,marcos:frameworksPage,purview:purviewProgramPage,perfil:profilePage,recursos:resourcesPage,mapa:mapPage,caso:() => casePage(id),notas:notesPage,nota:() => notePage(id),laboratorio:labPage,archivo:archivePage};
+    const active = ['','inicio'].includes(route) ? 'inicio' : ['proyectos','caso','purview','mineria'].includes(route) ? 'proyectos' : ['marcos','modelos'].includes(route) ? 'marcos' : route === 'perfil' ? 'perfil' : ['recursos','mapa','notas','nota','laboratorio'].includes(route) ? 'recursos' : null;
+    const handlers = {inicio:home,proyectos:projectsPage,mineria:window.STRATEGY_PAGES.mining,modelos:window.STRATEGY_PAGES.models,marcos:frameworksPage,purview:purviewProgramPage,perfil:profilePage,recursos:resourcesPage,mapa:mapPage,caso:() => casePage(id),notas:notesPage,nota:() => notePage(id),laboratorio:labPage,archivo:archivePage};
     const routeKey = route || 'inicio';
     app.innerHTML = (Object.hasOwn(handlers,routeKey) ? handlers[routeKey] : missing)();
     document.querySelectorAll('[data-nav]').forEach(a => { if(a.dataset.nav === active) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
