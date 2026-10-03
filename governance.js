@@ -4,23 +4,61 @@
   window.GOVERNANCE_LIBRARY = {
     framework: {
       title: "Marcos aplicados al negocio.",
-      intro: "Un espacio para conectar DAMA-DMBOK, experiencia profesional y decisiones de negocio. Método y notas propias disponibles.",
+      intro: "Conecto necesidades de negocio con prácticas DAMA-DMBOK, capacidades y evidencia DCAM para proponer mejoras verificables. Método y notas propias disponibles.",
+      comparison: [
+        {
+          name: "DAMA-DMBOK",
+          role: "Principios, funciones y prácticas de gestión de datos",
+          question: "¿Qué prácticas ayudan a atender esta necesidad de negocio?",
+          description: "Organiza principios, funciones y prácticas para gestionar datos. Orienta decisiones adaptadas al contexto; no prescribe una implantación única ni actúa como manual de un proveedor.",
+          url: "https://dama.org/learning-resources/dama-data-management-body-of-knowledge-dmbok/",
+          label: "DAMA · referencia oficial de DMBOK"
+        },
+        {
+          name: "DCAM",
+          role: "Capacidades, estrategia y mejora con evidencia",
+          question: "¿Qué capacidad necesitamos desarrollar y con qué evidencia la contrastamos?",
+          description: "Data Management Capability Assessment Model, de EDM Association, combina mejores prácticas, capacidades, objetivos y criterios de evaluación. Apoya estrategia, caso de negocio, modelo operativo y hoja de ruta mediante preguntas y evidencia.",
+          url: "https://edmcouncil.org/frameworks/dcam/",
+          label: "EDM Association · referencia oficial de DCAM"
+        }
+      ],
       method: [
         {
-          title: "Delimitar la fuente",
-          text: "Identificar capítulo y edición solo al disponer del texto; registrar conceptos y referencias verificables."
+          title: "Partir de la necesidad",
+          text: "Precisar decisión, uso del dato, riesgo y resultado esperado antes de elegir prácticas o controles."
         },
         {
-          title: "Traducir a una decisión",
-          text: "Formular una pregunta de negocio y distinguir lo que dice el marco de la interpretación propuesta."
+          title: "Seleccionar prácticas DMBOK",
+          text: "Elegir principios, funciones y prácticas pertinentes, y explicar su adaptación al contexto con responsables y criterios de aceptación."
         },
         {
-          title: "Diseñar la evidencia",
-          text: "Definir responsable, artefacto y criterio de aceptación; usar ejemplos sintéticos cuando no haya evidencia publicable."
+          title: "Contrastar capacidad con DCAM",
+          text: "Revisar objetivos, capacidad y evidencia para reconocer fortalezas y brechas; distinguir lo observado de lo declarado."
         },
         {
-          title: "Contrastar y revisar",
-          text: "Relacionar la propuesta con experiencia documentada, límites y resultados verificables; conservar lo pendiente como hipótesis."
+          title: "Priorizar y dar seguimiento",
+          text: "Acordar mejoras por valor, riesgo y dependencia; asignar responsables y comprobar avances antes de ampliar el alcance."
+        }
+      ],
+      connections: [
+        {
+          topic: "Ownership",
+          practice: "Acordar responsabilidades y derechos de decisión con el negocio para cada dominio.",
+          capability: "Contrastar mandato, capacidad y evidencia de decisiones, además de la designación nominal.",
+          decision: "Resolver los vacíos de autoridad en activos críticos antes de habilitar nuevos consumidores."
+        },
+        {
+          topic: "Calidad",
+          practice: "Definir reglas, población, uso y criterios de aceptación con los consumidores del dato.",
+          capability: "Contrastar ejecución de controles, revisión de resultados y capacidad de remediación con evidencia trazable.",
+          decision: "Concentrar la remediación en fallos que bloquean usos críticos y exigir una prueba de cierre antes de ampliar el alcance."
+        },
+        {
+          topic: "Metadatos",
+          practice: "Relacionar definiciones de negocio, metadatos técnicos, procedencia y responsables para facilitar un uso comprensible del dato.",
+          capability: "Contrastar cobertura, actualización, ownership y utilización del contexto, sin equiparar cantidad de registros con una capacidad efectiva.",
+          decision: "Priorizar productos cuyo significado o procedencia impide su uso, antes de ampliar el catálogo; verificar la mejora con sus consumidores."
         }
       ],
       topics: [
@@ -45,7 +83,7 @@
           noteId: "revision-humana"
         }
       ],
-      disclaimer: "Serie por capítulos en preparación. Se distinguen la referencia del marco, la interpretación propia y la experiencia respaldada por evidencia."
+      disclaimer: "Serie DAMA-DMBOK por capítulos en preparación. Las conexiones son mi interpretación propuesta, no equivalencias oficiales ni evaluaciones puntuadas. Distingo referencias, propuestas y experiencia validada."
     },
     purview: {
       pillars: [

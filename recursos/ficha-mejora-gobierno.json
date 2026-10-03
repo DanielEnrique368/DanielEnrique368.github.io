@@ -1,0 +1,58 @@
+{
+  "tipo": "ficha_propia_de_mejora_de_gobierno",
+  "estado": "sin_completar",
+  "descripcion": "Guía de trabajo propia para relacionar una necesidad de negocio con una brecha y una mejora. No es un instrumento oficial de evaluación.",
+  "objetivo_de_negocio": null,
+  "alcance": {
+    "dominio": null,
+    "producto_o_uso": null,
+    "consumidores": []
+  },
+  "referencias": [
+    {
+      "marco": "DAMA-DMBOK",
+      "edicion": null,
+      "practica_o_seccion_verificada": null
+    },
+    {
+      "marco": "DCAM",
+      "edicion": null,
+      "capacidad_o_referencia_verificada": null,
+      "acceso_autorizado": "por_confirmar"
+    }
+  ],
+  "situacion_actual": {
+    "responsable": null,
+    "proceso_observado": null,
+    "evidencias_autorizadas": [],
+    "brecha": null
+  },
+  "decision_de_mejora": {
+    "impacto_en_el_uso": null,
+    "riesgo_y_urgencia": null,
+    "dependencias": [],
+    "prioridad_acordada": null,
+    "accion": null,
+    "responsable": null,
+    "quien_autoriza": null,
+    "criterio_de_aceptacion": null,
+    "fecha_de_revision": null
+  },
+  "seguimiento": {
+    "indicador": null,
+    "formula_y_poblacion": null,
+    "linea_base": null,
+    "meta_acordada": null,
+    "resultado_observado": null,
+    "evidencia_de_cierre": null
+  },
+  "limites": {
+    "instrumento_oficial_dcam": false,
+    "puntuacion_dcam": null,
+    "certificacion": false
+  },
+  "publicacion": {
+    "revision_confidencialidad": "pendiente",
+    "publicar": false
+  }
+}

@@ -12,7 +12,7 @@ Sitio estático con cuatro casos de referencia: clasificación con recomendació
 
 - Inicio presenta la propuesta de Data & AI Governance Lead y los accesos a proyectos, enfoque y marcos. No contiene casos ni demostraciones de permisos.
 - Proyectos abre una vista independiente (`#proyectos`) con cuatro ejemplos: no desplaza la portada hacia abajo. Cada proyecto conserva intención, responsabilidades, medición propuesta y evidencia pública; los beneficios esperados no son resultados conseguidos.
-- [Marcos aplicados](https://danielenrique368.github.io/#marcos) conecta fuentes, decisiones, evidencia y revisión. Incluye una plantilla editorial propia; la serie por capítulos de DAMA-DMBOK queda pendiente del ejemplar y de experiencias validadas con el autor.
+- [Marcos aplicados](https://danielenrique368.github.io/#marcos) conecta DAMA-DMBOK y DCAM mediante prácticas, capacidades y decisiones de mejora. Incluye tres conexiones propias (ownership, calidad y metadatos), referencias oficiales y fichas propias descargables. No es un mapeo ni una evaluación oficial; no mezcla la experiencia en DCAM 2.2 con la documentación pública v3. La serie DAMA-DMBOK por capítulos sigue pendiente del ejemplar.
 - [Programa Purview](https://danielenrique368.github.io/#purview) organiza calidad, ownership, productos, alertas, reportes y metadatos de negocio. Permite explorar cuatro indicadores propuestos, sin datos conectados ni resultados atribuidos a una implementación.
 - Mi enfoque desarrolla cinco ámbitos de experiencia: modelo federado, contexto y calidad, privacidad, gobierno de IA y continuidad operativa. Cada uno conecta trabajo realizado, decisión de negocio y evidencia esperada, sin exponer entregables internos.
 - Recursos reúne las notas, el mapa de conexiones, el visor Archify y el laboratorio.
@@ -34,7 +34,7 @@ Los ejemplos son sintéticos. GenAI se presenta como diseño y contrato de datos
 | `cases.js` | Casos y notas; fuente del contenido visible |
 | `governance.js`, `profile.js` | Método de lectura aplicada, propuesta Purview y ámbitos de experiencia profesional |
 | `policy.js` | Política de demostración, exportada para navegador y Node |
-| `recursos/*.json` | Contratos sintéticos de calidad y gobierno de IA; plantilla de lectura aplicada sin completar |
+| `recursos/*.json` | Contratos sintéticos de calidad y gobierno de IA; fichas propias de lectura y mejora, sin completar |
 | `notas/*.md` | Notas descargables para Obsidian |
 | `arquitectura.dataflow.json` | Fuente editable Archify |
 | `arquitectura.html` | Visor autónomo generado por Archify |
@@ -51,7 +51,7 @@ La web no conecta bases de datos, APIs de pago ni cómputo de Databricks. La fue
 ## Comprobaciones
 
 - Recorridos de escritorio y móvil: casos, pestañas, búsqueda, descargas y menú.
-- Marcos y Purview: enlaces, plantilla, seis ámbitos y cuatro definiciones de indicadores; sin desbordamiento horizontal en anchos de 320 a 1920 px.
+- Marcos y Purview: referencias DAMA/DCAM, tres conexiones aplicadas, fichas descargables, seis ámbitos y cuatro definiciones de indicadores; sin desbordamiento horizontal en anchos de 320 a 1920 px.
 - Navegación: CTA por teclado, vistas separadas, historial atrás/adelante, acceso directo y recarga; anchos de 320 a 1920 px y movimiento reducido.
 - Evaluador: permitir, enmascarar, denegar y entradas inválidas.
 - Archify: 9/9 controles showcase; comprobación de pantalla sin desbordamiento en cuatro resoluciones. Consulta el recibo para el alcance exacto de revisión.

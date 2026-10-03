@@ -85,7 +85,7 @@
         <div><strong>Estrategia, gobierno y ejecución</strong><span>Una mirada de principio a fin</span></div>
         <div><strong>Más de cuatro años</strong><span>De experiencia profesional</span></div>
       </div>
-      <div class="resource-footer"><div><h2>Marcos para decidir. Evidencia para sostener.</h2><p>DAMA-DMBOK, interpretación propia y experiencias revisadas, conectados con decisiones y artefactos.</p></div><a class="text-link" href="#marcos">Explorar marcos aplicados ${icon('arrow')}</a></div>
+      <div class="resource-footer"><div><h2>Marcos para decidir. Evidencia para sostener.</h2><p>DAMA-DMBOK y DCAM, interpretación propia y experiencias revisadas, conectados con decisiones y artefactos.</p></div><a class="text-link" href="#marcos">Explorar marcos aplicados ${icon('arrow')}</a></div>
     </div>`;
   }
 
@@ -102,7 +102,7 @@
 
   function resourcesPage() {
     const resources = [
-      ['#marcos','doc','Marcos aplicados al negocio','DAMA-DMBOK como referencia, interpretación propia y evidencia de aplicación.'],
+      ['#marcos','doc','Marcos aplicados al negocio','DAMA-DMBOK y DCAM: prácticas, capacidades y decisiones de mejora basadas en evidencia.'],
       ['#notas','doc','Notas y marcos de gobernanza','Calidad, gobierno de datos e IA y decisiones de plataforma. Con búsqueda y descargas.'],
       ['#mapa','network','Mapa de conexiones','Cómo se relacionan los casos y sus notas.'],
       ['arquitectura.html','network','Arquitectura del sistema','Visor Archify: clasificación, revisión, políticas y operación.'],
@@ -117,7 +117,23 @@
 
   function frameworksPage() {
     const framework = governanceLibrary.framework;
-    return `${heading(framework.title, framework.intro)}<div class="framework-intro"><section><h2>De la lectura a la decisión</h2><ol class="framework-method">${framework.method.map(step => `<li><strong>${escape(step.title)}</strong><span>${escape(step.text)}</span></li>`).join('')}</ol></section><aside class="framework-scope"><h2>DAMA-DMBOK, con criterio propio</h2><p>La serie por capítulos se desarrollará a partir del ejemplar en español y de mi experiencia profesional contrastada con evidencia. Esta primera sección ofrece un método y notas propias; no presenta capítulos del libro como ya analizados.</p><a class="text-link" href="recursos/ficha-lectura-aplicada.json" download>Descargar plantilla de lectura aplicada ${icon('doc')}</a><p><a class="text-link" href="https://dama.org/learning-resources/dama-data-management-body-of-knowledge-dmbok/" target="_blank" rel="noopener noreferrer">Referencia oficial de DAMA ${icon('out')}</a></p></aside></div><section class="program-section"><h2>Criterios que ya puedes explorar</h2><p>Notas de aplicación propias. No son resúmenes de capítulos ni equivalencias oficiales entre marcos.</p><div class="framework-topics">${framework.topics.map(topic => `<a class="framework-topic" href="#nota/${escape(topic.noteId)}"><div><h3>${escape(topic.title)}</h3><p>${escape(topic.question)}</p></div><span>Leer nota ${icon('arrow')}</span></a>`).join('')}</div></section><p class="framework-status">${escape(framework.disclaimer)}</p><section class="program-bridge"><div><h2>Un marco también debe llegar a la operación.</h2><p>Explora cómo ownership, calidad y metadatos se conectan en el programa propuesto para Purview.</p></div><a class="button" href="#purview">Explorar Purview ${icon('arrow')}</a></section>`;
+    return `${heading(framework.title, framework.intro)}
+      <section class="framework-pair" aria-label="DAMA-DMBOK y DCAM">
+        ${framework.comparison.map(item => `<article><h2>${escape(item.name)}</h2><p class="framework-role">${escape(item.role)}</p><h3>${escape(item.question)}</h3><p>${escape(item.description)}</p><a class="text-link" href="${escape(item.url)}" target="_blank" rel="noopener noreferrer">${escape(item.label)} ${icon('out')}</a></article>`).join('')}
+      </section>
+      <section class="framework-connection-section">
+        <h2>Complementarlos para decidir mejor.</h2>
+        <p>No los trato como alternativas excluyentes: ambos orientan buenas prácticas. Mi enfoque combina la referencia disciplinar de DAMA-DMBOK con el contraste de capacidades y evidencia de DCAM para priorizar mejoras según el negocio.</p>
+        <p class="framework-source-note">La siguiente conexión es una interpretación aplicada propia, no un mapeo oficial entre capítulos y capacidades ni una evaluación DCAM.</p>
+        <div class="framework-connections">${framework.connections.map(item => `<article class="framework-connection"><h3>${escape(item.topic)}</h3><dl><div><dt>Práctica a estructurar</dt><dd>${escape(item.practice)}</dd></div><div><dt>Capacidad a contrastar</dt><dd>${escape(item.capability)}</dd></div><div><dt>Decisión de negocio</dt><dd>${escape(item.decision)}</dd></div></dl></article>`).join('')}</div>
+      </section>
+      <div class="framework-intro">
+        <section><h2>De los marcos al plan de mejora</h2><ol class="framework-method">${framework.method.map(step => `<li><strong>${escape(step.title)}</strong><span>${escape(step.text)}</span></li>`).join('')}</ol><a class="text-link" href="recursos/ficha-mejora-gobierno.json" download>Descargar ficha de mejora propia ${icon('doc')}</a><p class="framework-source-note">Para registrar objetivo, brecha, responsable, prioridad y seguimiento. No contiene una escala ni cuestionarios oficiales de DCAM.</p></section>
+        <aside class="framework-scope"><h2>Fuentes, versiones y alcance</h2><p>La experiencia recogida en mi perfil utiliza DCAM 2.2. La página pública de EDM Association consultada describe v3. Toda evaluación debe declarar su versión, alcance y acceso autorizado al material; no mezclo criterios ni puntuaciones entre ediciones.</p><p>La serie de DAMA-DMBOK por capítulos sigue en preparación, pendiente del ejemplar en español y de experiencias contrastadas. No se publican el libro ni materiales licenciados de DCAM.</p><a class="text-link" href="recursos/ficha-lectura-aplicada.json" download>Descargar plantilla de lectura aplicada ${icon('doc')}</a></aside>
+      </div>
+      <section class="program-section"><h2>Criterios que ya puedes explorar</h2><p>Notas propias para profundizar en los casos. No sustituyen los marcos ni acreditan cumplimiento o madurez.</p><div class="framework-topics">${framework.topics.map(topic => `<a class="framework-topic" href="#nota/${escape(topic.noteId)}"><div><h3>${escape(topic.title)}</h3><p>${escape(topic.question)}</p></div><span>Leer nota ${icon('arrow')}</span></a>`).join('')}</div></section>
+      <p class="framework-status">${escape(framework.disclaimer)}</p>
+      <section class="program-bridge"><div><h2>Del criterio de gobierno a la operación.</h2><p>Purview puede apoyar la implementación; no sustituye el modelo de gobierno ni demuestra por sí solo capacidad organizativa.</p></div><a class="button" href="#purview">Explorar Purview ${icon('arrow')}</a></section>`;
   }
 
   function signalDetail(id) {
