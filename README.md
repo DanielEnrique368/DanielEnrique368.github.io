@@ -10,8 +10,8 @@ Sitio estático con cuatro casos de referencia: clasificación con recomendació
 
 ## Explorar
 
-- La portada permite probar tres contextos de una decisión de acceso: analítica, auditoría y otro uso. Utiliza el mismo evaluador que el laboratorio.
-- Casos de negocio lleva a cuatro ejemplos con intención, responsabilidades, medición propuesta y evidencia pública. Los beneficios esperados no se presentan como resultados conseguidos.
+- Inicio presenta la propuesta de Data & AI Governance Lead y los accesos a proyectos, enfoque y marcos. No contiene casos ni demostraciones de permisos.
+- Proyectos abre una vista independiente (`#proyectos`) con cuatro ejemplos: no desplaza la portada hacia abajo. Cada proyecto conserva intención, responsabilidades, medición propuesta y evidencia pública; los beneficios esperados no son resultados conseguidos.
 - [Marcos aplicados](https://danielenrique368.github.io/#marcos) conecta fuentes, decisiones, evidencia y revisión. Incluye una plantilla editorial propia; la serie por capítulos de DAMA-DMBOK queda pendiente del ejemplar y de experiencias validadas con el autor.
 - [Programa Purview](https://danielenrique368.github.io/#purview) organiza calidad, ownership, productos, alertas, reportes y metadatos de negocio. Permite explorar cuatro indicadores propuestos, sin datos conectados ni resultados atribuidos a una implementación.
 - Mi enfoque desarrolla cinco ámbitos de experiencia: modelo federado, contexto y calidad, privacidad, gobierno de IA y continuidad operativa. Cada uno conecta trabajo realizado, decisión de negocio y evidencia esperada, sin exponer entregables internos.
@@ -52,6 +52,6 @@ La web no conecta bases de datos, APIs de pago ni cómputo de Databricks. La fue
 
 - Recorridos de escritorio y móvil: casos, pestañas, búsqueda, descargas y menú.
 - Marcos y Purview: enlaces, plantilla, seis ámbitos y cuatro definiciones de indicadores; sin desbordamiento horizontal en anchos de 320 a 1920 px.
-- Portada: decisiones accesibles por teclado, cinco anchos adicionales de 320 a 1920 px y movimiento reducido.
+- Navegación: CTA por teclado, vistas separadas, historial atrás/adelante, acceso directo y recarga; anchos de 320 a 1920 px y movimiento reducido.
 - Evaluador: permitir, enmascarar, denegar y entradas inválidas.
 - Archify: 9/9 controles showcase; comprobación de pantalla sin desbordamiento en cuatro resoluciones. Consulta el recibo para el alcance exacto de revisión.
