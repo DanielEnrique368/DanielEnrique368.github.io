@@ -1,0 +1,37 @@
+{
+  "tipo": "plantilla_editorial_propia",
+  "estado": "sin_completar",
+  "referencia": {
+    "obra": "DAMA-DMBOK",
+    "edicion": "Pendiente de verificar en el ejemplar",
+    "idioma": "español",
+    "capitulo": null,
+    "paginas": null
+  },
+  "pregunta_de_negocio": null,
+  "sintesis_propia_del_principio": null,
+  "interpretacion_y_limites": null,
+  "experiencia": {
+    "contexto_anonimizado": null,
+    "decision": null,
+    "participantes_por_rol": [],
+    "evidencia_autorizada": [],
+    "resultado_comprobado": null,
+    "estado_validacion": "pendiente"
+  },
+  "aplicacion_propuesta": {
+    "responsable": null,
+    "artefacto": null,
+    "indicador": null,
+    "formula_y_poblacion": null,
+    "linea_base": null,
+    "meta_acordada": null,
+    "accion_si_no_cumple": null
+  },
+  "publicacion": {
+    "revision_autor": "pendiente",
+    "revision_confidencialidad": "pendiente",
+    "incluir_libro_o_capturas": false,
+    "publicar": false
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "tipo": "ficha_sintetica_de_diseno",
+  "version": "1.0",
+  "caso": "Recomendación de etiquetas para un catálogo ficticio",
+  "estado": "pendiente_revision",
+  "habilitado": false,
+  "publicar": false,
+  "proveedor_ia_conectado": false,
+  "finalidad": "Proponer tipo semántico y sensibilidad para revisión humana.",
+  "datos": "Esquemas y descripciones sintéticos; sin datos personales reales.",
+  "limites": [
+    "No modificar etiquetas oficiales ni permisos.",
+    "No enviar muestras reales a un proveedor de IA.",
+    "No presentar esta ficha como evaluación ejecutada, certificación o cumplimiento."
+  ],
+  "funciones": {
+    "dueno_datos": "Confirma significado y condiciones de uso de los datos.",
+    "responsable_negocio": "Acepta finalidad, límites y criterios del caso.",
+    "constructor": "Desarrolla la solución y aporta evidencia; no se autoaprueba.",
+    "validador": "Persona distinta del constructor, con competencia para contrastar pruebas.",
+    "supervisor": "Revisa recomendaciones, puede detener el uso y registra intervenciones.",
+    "autoridad_habilitacion": "Decide después de la validación y la aceptación; no se presume designada."
+  },
+  "pruebas_requeridas": [
+    "Conjunto sintético etiquetado y revisado antes de evaluar.",
+    "Criterios de aceptación definidos por categoría y criticidad.",
+    "Registro de errores, casos ambiguos y materias no evaluadas.",
+    "Comprobación de que ninguna recomendación cambia automáticamente permisos."
+  ],
+  "criterios_de_fallo": [
+    "Falta evidencia para una categoría que se pretende habilitar.",
+    "La salida incumple el contrato o utiliza etiquetas fuera del vocabulario aprobado.",
+    "Un criterio de aceptación acordado no se cumple o no fue evaluado.",
+    "El supervisor no puede detener el uso o no existe cobertura competente."
+  ],
+  "respuesta_al_fallo": "Mantener deshabilitado o detener el uso afectado; registrar causa, corregir y repetir revisión antes de una nueva decisión.",
+  "reevaluacion_ante_cambios": [
+    "Finalidad o personas afectadas",
+    "Datos o vocabulario",
+    "Modelo, proveedor o versión",
+    "Incidente o patrón de error relevante"
+  ],
+  "evidencia_actual": "Sin pruebas ejecutadas; plantilla ilustrativa.",
+  "mapeo_propuesto_nist_ai_rmf": {
+    "GOVERN": "Funciones, límites de decisión y escalamiento.",
+    "MAP": "Finalidad, contexto, datos y consecuencias del uso.",
+    "MEASURE": "Pruebas, errores y revisión diferenciada.",
+    "MANAGE": "Tratamiento de hallazgos, intervención y reevaluación."
+  },
+  "referencia_publica": "https://www.nist.gov/itl/ai-risk-management-framework/nist-ai-rmf-playbook"
+}
